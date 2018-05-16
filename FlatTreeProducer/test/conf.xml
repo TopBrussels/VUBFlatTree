@@ -1,0 +1,976 @@
+<preselection>
+    <info activate="0"></info>
+    <obj name="muon" min="0"></obj>
+    <obj name="electron" min="0"></obj>
+    <obj name="lepton" min="1"></obj>
+    <obj name="jet" min="0"></obj>
+    <obj name="MET" min="0"></obj>
+</preselection>
+
+<variables>
+    <var name="ev_run" save="1" desc="Run id"></var>
+    <var name="ev_id" save="1" desc="Event id"></var>
+    <var name="ev_lumi" save="1" desc="Lumiblock id"></var>
+    <var name="ev_rho" save="1"></var>
+    <var name="met_px" save="1"></var>
+    <var name="met_py" save="1"></var>
+    <var name="met_pt" save="1"></var>
+    <var name="met_phi" save="1"></var>
+    <var name="met_sumet" save="1"></var>
+    <var name="metGen_px" save="1" mc="1"></var>
+    <var name="metGen_py" save="1" mc="1"></var>
+    <var name="metGen_pt" save="1" mc="1"></var>
+    <var name="metGen_phi" save="1" mc="1"></var>
+    <var name="metGen_sumet" save="1" mc="1"></var>
+    <var name="metGen_NeutralEMEt" save="0" mc="1"></var>
+    <var name="metGen_ChargedEMEt" save="0" mc="1"></var>
+    <var name="metGen_NeutralHadEt" save="0" mc="1"></var>
+    <var name="metGen_ChargedHadEt" save="0" mc="1"></var>
+    <var name="metGen_MuonEt" save="1" mc="0"></var>
+    <var name="metGen_InvisibleEt" save="0" mc="1"></var>
+    <var name="met_sig" save="1"></var>
+    <var name="met_cov00" save="1"></var>
+    <var name="met_cov10" save="1"></var>
+    <var name="met_cov01" save="1"></var>
+    <var name="met_cov11" save="1"></var>
+    <var name="met_uncorrectedPt" save="0"></var>
+    <var name="met_uncorrectedPhi" save="0"></var>
+    <var name="met_uncorrectedSumEt" save="0"></var>
+    <var name="met_caloMETPt" save="0"></var>
+    <var name="met_caloMETPhi" save="0"></var>
+    <var name="met_caloMETSumEt" save="0"></var>
+    <var name="met_shiftedPx_JetEnUp" save="1"></var>
+    <var name="met_shiftedPx_JetEnDown" save="1"></var>
+    <var name="met_shiftedPx_JetResUp" save="1"></var>
+    <var name="met_shiftedPx_JetResDown" save="1"></var>
+    <var name="met_shiftedPx_MuonEnUp" save="1"></var>
+    <var name="met_shiftedPx_MuonEnDown" save="1"></var>
+    <var name="met_shiftedPx_ElectronEnUp" save="1"></var>
+    <var name="met_shiftedPx_ElectronEnDown" save="1"></var>
+    <var name="met_shiftedPx_TauEnUp" save="1"></var>
+    <var name="met_shiftedPx_TauEnDown" save="1"></var>
+    <var name="met_shiftedPx_UnclusteredEnUp" save="1"></var>
+    <var name="met_shiftedPx_UnclusteredEnDown" save="1"></var>
+    <var name="met_shiftedPx_NoShift" save="1"></var>
+    <var name="met_shiftedPx_PhotonEnUp" save="1"></var>
+    <var name="met_shiftedPx_PhotonEnDown" save="1"></var>
+    <var name="met_shiftedPy_JetEnUp" save="1"></var>
+    <var name="met_shiftedPy_JetEnDown" save="1"></var>
+    <var name="met_shiftedPy_JetResUp" save="1"></var>
+    <var name="met_shiftedPy_JetResDown" save="1"></var>
+    <var name="met_shiftedPy_MuonEnUp" save="1"></var>
+    <var name="met_shiftedPy_MuonEnDown" save="1"></var>
+    <var name="met_shiftedPy_ElectronEnUp" save="1"></var>
+    <var name="met_shiftedPy_ElectronEnDown" save="1"></var>
+    <var name="met_shiftedPy_TauEnUp" save="1"></var>
+    <var name="met_shiftedPy_TauEnDown" save="1"></var>
+    <var name="met_shiftedPy_UnclusteredEnUp" save="1"></var>
+    <var name="met_shiftedPy_UnclusteredEnDown" save="1"></var>
+    <var name="met_shiftedPy_NoShift" save="1"></var>
+    <var name="met_shiftedPy_PhotonEnUp" save="1"></var>
+    <var name="met_shiftedPy_PhotonEnDown" save="1"></var>
+    <var name="met_shiftedPhi_JetEnUp" save="1"></var>
+    <var name="met_shiftedPhi_JetEnDown" save="1"></var>
+    <var name="met_shiftedPhi_JetResUp" save="1"></var>
+    <var name="met_shiftedPhi_JetResDown" save="1"></var>
+    <var name="met_shiftedPhi_MuonEnUp" save="1"></var>
+    <var name="met_shiftedPhi_MuonEnDown" save="1"></var>
+    <var name="met_shiftedPhi_ElectronEnUp" save="1"></var>
+    <var name="met_shiftedPhi_ElectronEnDown" save="1"></var>
+    <var name="met_shiftedPhi_TauEnUp" save="1"></var>
+    <var name="met_shiftedPhi_TauEnDown" save="1"></var>
+    <var name="met_shiftedPhi_UnclusteredEnUp" save="1"></var>
+    <var name="met_shiftedPhi_UnclusteredEnDown" save="1"></var>
+    <var name="met_shiftedPhi_NoShift" save="1"></var>
+    <var name="met_shiftedPhi_PhotonEnUp" save="1"></var>
+    <var name="met_shiftedPhi_PhotonEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_JetEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_JetEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_JetResUp" save="1"></var>
+    <var name="met_shiftedSumEt_JetResDown" save="1"></var>
+    <var name="met_shiftedSumEt_MuonEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_MuonEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_ElectronEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_ElectronEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_TauEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_TauEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_UnclusteredEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_UnclusteredEnDown" save="1"></var>
+    <var name="met_shiftedSumEt_NoShift" save="1"></var>
+    <var name="met_shiftedSumEt_PhotonEnUp" save="1"></var>
+    <var name="met_shiftedSumEt_PhotonEnDown" save="1"></var>
+    <var name="metNoHF_pt" save="1"></var>
+    <var name="metNoHF_phi" save="1"></var>
+    <var name="metNoHF_sumet" save="1"></var>
+    <var name="metPuppi_pt" save="1"></var>
+    <var name="metPuppi_phi" save="1"></var>
+    <var name="metPuppi_sumet" save="1"></var>
+    <var name="nvertex" save="1"></var>
+    <var name="pv_x" save="1"></var>
+    <var name="pv_y" save="1"></var>
+    <var name="pv_z" save="1"></var>
+    <var name="pv_xError" save="1"></var>
+    <var name="pv_yError" save="1"></var>
+    <var name="pv_zError" save="1"></var>
+    <var name="pv_chi2" save="1"></var>
+    <var name="pv_ndof" save="1"></var>
+    <var name="pv_rho" save="1"></var>
+    <var name="pv_isFake" save="1"></var>
+    <var name="mc_weight" save="1"></var>
+    <var name="weight_originalXWGTUP" save="1" mc="1"></var>
+    <var name="weight_scale_muF0p5" save="1" mc="1"></var>
+    <var name="weight_scale_muF2" save="1" mc="1"></var>
+    <var name="weight_scale_muR0p5" save="1" mc="1"></var>
+    <var name="weight_scale_muR2" save="1" mc="1"></var>
+    <var name="mc_pdfweights" save="1" mc="1"></var>
+    <var name="mc_pdfweightIds" save="1" mc="1"></var>
+    <var name="mc_id" save="1" mc="1"></var>
+    <var name="mc_f1" save="1" mc="1"></var>
+    <var name="mc_f2" save="1" mc="1"></var>
+    <var name="mc_x1" save="1" mc="1"></var>
+    <var name="mc_x2" save="1" mc="1"></var>
+    <var name="mc_scale" save="1" mc="1"></var>
+    <var name="mc_ptHat" save="1" mc="1"></var>
+    <var name="mc_pu_intime_NumInt" save="1" mc="1"></var>
+    <var name="mc_pu_trueNumInt" save="1" mc="1"></var>
+    <var name="mc_pu_before_npu" save="1" mc="1"></var>
+    <var name="mc_pu_after_npu" save="1" mc="1"></var>
+    <var name="mc_pu_Npvi" save="1" mc="1"></var>
+    <var name="mc_pu_Nzpositions" save="1" mc="1"></var>
+    <var name="mc_pu_BunchCrossing" save="1" mc="1"></var>
+    <var name="mc_pu_zpositions" save="1" mc="1"></var>
+    <var name="mc_pu_sumpT_lowpT" save="1" mc="1"></var>
+    <var name="mc_pu_sumpT_highpT" save="1" mc="1"></var>
+    <var name="mc_pu_ntrks_lowpT" save="1" mc="1"></var>
+    <var name="mc_pu_ntrks_highpT" save="1" mc="1"></var>
+    <var name="mc_truth_p4" save="0" mc="1"></var>
+    <var name="mc_truth_tth" save="0" mc="1"></var>
+    <var name="mc_truth_ttz" save="0" mc="1"></var>
+    <var name="mc_truth_ttw" save="0" mc="1"></var>
+    <var name="mc_truth_tzq" save="0" mc="1"></var>
+    <var name="mc_truth_thq" save="0" mc="1"></var>
+    <var name="trigger_n" save="1"></var>
+    <var name="trigger" save="1"></var>
+    <var name="trigger_name" save="1"></var>
+    <var name="trigger_pass" save="1"></var>
+    <var name="trigger_prescale" save="1"></var>
+    <var name="trigger_HLTprescale" save="1"></var>
+    <var name="trigger_L1prescale" save="1"></var>
+    <var name="triggerobject_do" save="0"></var>
+    <var name="triggerobject_n" save="1"></var>
+    <var name="triggerobject_pt" save="1"></var>
+    <var name="triggerobject_eta" save="1"></var>
+    <var name="triggerobject_phi" save="1"></var>
+    <var name="triggerobject_collection" save="1"></var>    
+    <var name="triggerobject_filterIds_n" save="1"></var>
+    <var name="triggerobject_filterIds" save="1"></var>
+    <var name="triggerobject_isTriggerL1Mu" save="1"></var>
+    <var name="triggerobject_isTriggerL1NoIsoEG" save="1"></var>
+    <var name="triggerobject_isTriggerL1IsoEG" save="1"></var>
+    <var name="triggerobject_isTriggerL1CenJet" save="1"></var>
+    <var name="triggerobject_isTriggerL1ForJet" save="1"></var>
+    <var name="triggerobject_isTriggerL1TauJet" save="1"></var>
+    <var name="triggerobject_isTriggerL1ETM" save="1"></var>
+    <var name="triggerobject_isTriggerL1ETT" save="1"></var>
+    <var name="triggerobject_isTriggerL1HTT" save="1"></var>
+    <var name="triggerobject_isTriggerL1HTM" save="1"></var>
+    <var name="triggerobject_isTriggerL1JetCounts" save="1"></var>
+    <var name="triggerobject_isTriggerL1HfBitCounts" save="1"></var>
+    <var name="triggerobject_isTriggerL1HfRingEtSums" save="1"></var>
+    <var name="triggerobject_isTriggerL1TechTrig" save="1"></var>
+    <var name="triggerobject_isTriggerL1Castor" save="1"></var>
+    <var name="triggerobject_isTriggerL1BPTX" save="1"></var>
+    <var name="triggerobject_isTriggerL1GtExternal" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerPhoton" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerElectron" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerMuon" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerTau" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerJet" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerBJet" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerMET" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerTET" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerTHT" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerMHT" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerTrack" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerCluster" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerMETSig" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerELongit" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerMHTSig" save="1"></var>
+    <var name="triggerobject_isHLT_TriggerHLongit" save="1"></var>    
+    <var name="triggerobject_filterLabels_n" save="1"></var>
+    <var name="triggerobject_filterLabels" save="1"></var>    
+    <var name="triggerobject_pathNamesAll_n" save="1"></var>
+    <var name="triggerobject_pathNamesAll" save="1"></var>
+    <var name="triggerobject_pathNamesAll_isBoth" save="1"></var>
+    <var name="triggerobject_pathNamesAll_isL3" save="1"></var>
+    <var name="triggerobject_pathNamesAll_isLF" save="1"></var>
+    <var name="triggerobject_pathNamesAll_isNone" save="1"></var>
+    <var name="el_n" save="1"></var>
+    <var name="el_pt" save="1" cut_min="8.0"></var>
+    <var name="el_eta" save="1" cut_max="10.0"></var>
+    <var name="el_phi" save="1"></var>
+    <var name="el_m" save="1"></var>
+    <var name="el_E" save="1"></var>
+    <var name="el_id" save="1"></var>
+    <var name="el_charge" save="1"></var>
+    <var name="el_passConversionVeto" save="1"></var>
+    <var name="el_isGsfCtfScPixChargeConsistent" save="1"></var>
+    <var name="el_isGsfScPixChargeConsistent" save="1"></var>
+    <var name="el_ecalEnergy" save="1"></var>
+    <var name="el_correctedEcalEnergy" save="1"></var>
+    <var name="el_correctedEcalEnergyError" save="0"></var>
+    <var name="el_trackMomentumError" save="1"></var>
+    <var name="el_ip3d" save="1"></var>
+    <var name="el_ip3dErr" save="1"></var>
+    <var name="el_ip2d" save="1"></var>
+    <var name="el_ip2dErr" save="1"></var>
+    <var name="el_ip3dBS" save="0"></var>
+    <var name="el_ip3dBSErr" save="0"></var>
+    <var name="el_ip2dBS" save="0"></var>
+    <var name="el_ip2dBSErr" save="0"></var>    
+    <var name="el_neutralHadronIso" save="1"></var>
+    <var name="el_chargedHadronIso" save="1"></var>
+    <var name="el_puChargedHadronIso" save="1"></var>
+    <var name="el_ecalIso" save="1"></var>
+    <var name="el_hcalIso" save="1"></var>
+    <var name="el_particleIso" save="1"></var>
+    <var name="el_photonIso" save="1"></var>
+    <var name="el_trackIso" save="1"></var>
+    <var name="el_ecalPFClusterIso" save="1"></var>
+    <var name="el_hcalPFClusterIso" save="1"></var>
+    <var name="el_pfIso_sumChargedHadronPt" save="1"></var>
+    <var name="el_pfIso_sumNeutralHadronEt" save="1"></var>
+    <var name="el_pfIso_sumPhotonEt" save="1"></var>
+    <var name="el_pfIso_sumPUPt" save="1"></var>    
+    <var name="el_dr03EcalRecHitSumEt" save="0"></var>
+    <var name="el_dr03HcalTowerSumEt" save="0"></var>
+    <var name="el_dr03HcalDepth1TowerSumEt" save="0"></var>
+    <var name="el_dr03HcalDepth2TowerSumEt" save="0"></var>
+    <var name="el_dr03TkSumPt" save="0"></var>
+    <var name="el_dr04EcalRecHitSumEt" save="0"></var>
+    <var name="el_dr04HcalTowerSumEt" save="0"></var>
+    <var name="el_dr04HcalDepth1TowerSumEt" save="0"></var>
+    <var name="el_dr04HcalDepth2TowerSumEt" save="0"></var>
+    <var name="el_dr04TkSumPt" save="0"></var>
+    <var name="el_hcalOverEcal" save="0"></var>
+    <var name="el_hcalOverEcalBc" save="0"></var>
+    <var name="el_hcalDepth1OverEcal" save="0"></var>
+    <var name="el_hcalDepth2OverEcal" save="0"></var>
+    <var name="el_eSeedClusterOverPout" save="0"></var>
+    <var name="el_eSeedClusterOverP" save="0"></var>
+    <var name="el_eEleClusterOverPout" save="0"></var>
+    <var name="el_deltaEtaEleClusterTrackAtCalo" save="0"></var>
+    <var name="el_deltaPhiEleClusterTrackAtCalo" save="0"></var>
+    <var name="el_miniIso" save="1"></var>
+    <var name="el_miniIsoTTH" save="1"></var>
+    <var name="el_vx" save="1"></var>
+    <var name="el_vy" save="1"></var>
+    <var name="el_vz" save="1"></var>
+    <var name="el_hasGsfTrack" save="1"></var>
+    <var name="el_gsfTrack_d0" save="1"></var>
+    <var name="el_gsfTrack_z0" save="1"></var>
+    <var name="el_gsfTrack_d0Error" save="1"></var>
+    <var name="el_gsfTrack_z0Error" save="1"></var>
+    <var name="el_gsfTrack_PV_dxy" save="1"></var>
+    <var name="el_gsfTrack_PV_dz" save="1"></var>
+    <var name="el_gsfTrack_RP_dxy" save="0"></var>
+    <var name="el_gsfTrack_RP_dz" save="0"></var>
+    <var name="el_gsfTrack_BS_dxy" save="0"></var>
+    <var name="el_gsfTrack_BS_dz" save="0"></var>
+    <var name="el_gsfTrack_dxyError" save="1"></var>
+    <var name="el_gsfTrack_dzError" save="1"></var>
+    <var name="el_gsfTrack_normalizedChi2" save="1"></var>
+    <var name="el_numberOfHits" save="1"></var>
+    <var name="el_numberOfValidHits" save="1"></var>
+    <var name="el_expectedMissingOuterHits" save="1"></var>
+    <var name="el_numberOfValidPixelHits" save="1"></var>
+    <var name="el_numberOfLostPixelHits" save="1"></var>
+    <var name="el_trackerLayersWithMeasurement" save="1"></var>
+    <var name="el_pixelLayersWithMeasurement" save="1"></var>
+    <var name="el_numberOfValidStripLayersWithMonoAndStereo" save="0"></var>
+    <var name="el_trackerLayersWithoutMeasurement" save="1"></var>
+    <var name="el_superCluster_eta" save="1"></var>
+    <var name="el_superCluster_phi" save="1"></var>
+    <var name="el_superCluster_energy" save="1"></var>
+    <var name="el_superCluster_rawEnergy" save="0"></var>
+    <var name="el_superCluster_preshowerEnergy" save="0"></var>
+    <var name="el_superCluster_etaWidth" save="1"></var>
+    <var name="el_superCluster_phiWidth" save="1"></var>
+    <var name="el_superCluster_preshowerEnergyPlane1" save="0"></var>
+    <var name="el_superCluster_preshowerEnergyPlane2" save="0"></var>
+    <var name="el_superCluster_positionR" save="0"></var>   
+    <var name="el_basicClustersSize" save="0"></var>
+    <var name="el_e1x5" save="0"></var>
+    <var name="el_e5x5" save="1"></var>
+    <var name="el_e2x5Max" save="0"></var>
+    <var name="el_sigmaEtaEta" save="1"></var>
+    <var name="el_sigmaIetaIeta" save="1"></var>
+    <var name="el_sigmaIphiIphi" save="1"></var>
+    <var name="el_sigmaIetaIphi" save="1"></var>
+    <var name="el_full5x5_sigmaIphiIphi" save="1"></var>
+    <var name="el_full5x5_sigmaEtaEta" save="1"></var>
+    <var name="el_full5x5_sigmaIetaIeta" save="1"></var>
+    <var name="el_full5x5_sigmaIetaIphi" save="1"></var>
+    <var name="el_full5x5_r9" save="1"></var>
+    <var name="el_full5x5_e1x5" save="1"></var>
+    <var name="el_full5x5_e5x5" save="1"></var>
+    <var name="el_full5x5_e2x5Max" save="1"></var>
+    <var name="el_hadronicOverEm" save="1"></var>
+    <var name="el_numberOfLostHits" save="1"></var>
+    <var name="el_numberOfLostHitsDefault" save="1"></var>
+    <var name="el_fbrem" save="1"></var>
+    <var name="el_kf_normalizedChi2" save="1"></var>
+    <var name="el_gsf_normalizedChi2" save="1"></var>
+    <var name="el_deltaEtaSuperClusterTrackAtVtx" save="1"></var>
+    <var name="el_deltaPhiSuperClusterTrackAtVtx" save="1"></var>
+    <var name="el_deltaEtaSeedClusterTrackAtCalo" save="1"></var>
+    <var name="el_deltaPhiSeedClusterTrackAtCalo" save="1"></var>
+    <var name="el_full5x5_OneMinusE1x5E5x5" save="0"></var>
+    <var name="el_OneMinusE1x5E5x5" save="0"></var>
+    <var name="el_eSuperClusterOverP" save="1"></var>
+    <var name="el_IoEmIoP" save="1"></var>
+    <var name="el_ooEmooP" save="1"></var>
+    <var name="el_eleEoPout" save="1"></var>
+    <var name="el_PreShowerOverRaw" save="0"></var>
+    <var name="el_mvaIso" save="1"></var>
+    <var name="el_mvaNoIso" save="1"></var>
+    <var name="el_vetoCBId" save="1"></var>
+    <var name="el_looseCBId" save="1"></var>
+    <var name="el_mediumCBId" save="1"></var>
+    <var name="el_tightCBId" save="1"></var>
+    <var name="el_NoIso90MVAId" save="1"></var>
+    <var name="el_NoIso80MVAId" save="1"></var>
+    <var name="el_NoIsoLooseMVAId" save="1"></var>
+    <var name="el_Iso90MVAId" save="1"></var>
+    <var name="el_Iso80MVAId" save="1"></var>
+    <var name="el_IsoLooseMVAId" save="1"></var>
+    <var name="el_mediumStopID" save="0"></var>
+    <var name="el_vetoStopID" save="0"></var>
+    <var name="el_lepMVA" save="1"></var>
+    <var name="el_lepMVA_pt" save="1"></var>   
+    <var name="el_lepMVA_eta" save="1"></var>
+    <var name="el_lepMVA_miniRelIsoCharged" save="1"></var>
+    <var name="el_lepMVA_miniRelIsoNeutral" save="1"></var>
+    <var name="el_lepMVA_jetPtRatio" save="1"></var>
+    <var name="el_lepMVA_jetPtRelv2" save="1"></var>
+    <var name="el_lepMVA_jetBTagCSV" save="1"></var>
+    <var name="el_lepMVA_sip3d" save="1"></var>
+    <var name="el_lepMVA_dxy" save="1"></var>
+    <var name="el_lepMVA_dz" save="1"></var>
+    <var name="el_lepMVA_mvaId" save="1"></var>
+    <var name="el_lepMVA_jetNDauChargedMVASel" save="1"></var>
+    <var name="el_conept" save="1"></var>
+    <var name="el_hasMatchedConversion" save="1"></var>
+    <var name="el_expectedMissingInnerHits" save="1"></var>
+    <var name="el_hasMCMatch" save="1" mc="1"></var>
+    <var name="el_gen_pt" save="1" mc="1"></var>
+    <var name="el_gen_eta" save="1" mc="1"></var>
+    <var name="el_gen_phi" save="1" mc="1"></var>
+    <var name="el_gen_m" save="1" mc="1"></var>
+    <var name="el_gen_status" save="1" mc="1"></var>
+    <var name="el_gen_id" save="1" mc="1"></var>
+    <var name="el_gen_charge" save="1" mc="1"></var>
+    <var name="el_gen_dr" save="1" mc="1"></var>
+    <var name="el_hasMCMatchPAT" save="1" mc="1"></var>
+    <var name="el_genPAT_pt" save="1" mc="1"></var>
+    <var name="el_genPAT_eta" save="1" mc="1"></var>
+    <var name="el_genPAT_phi" save="1" mc="1"></var>
+    <var name="el_genPAT_m" save="1" mc="1"></var>
+    <var name="el_genPAT_status" save="1" mc="1"></var>
+    <var name="el_genPAT_id" save="1" mc="1"></var>
+    <var name="el_genPAT_charge" save="1" mc="1"></var>
+    <var name="mu_n" save="1"></var>
+    <var name="mu_pt" save="1" cut_min="8.0"></var>
+    <var name="mu_eta" save="1" cut_max="10.0"></var>
+    <var name="mu_phi" save="1"></var>
+    <var name="mu_m" save="1"></var>
+    <var name="mu_E" save="1"></var>
+    <var name="mu_id" save="1"></var>
+    <var name="mu_charge" save="1"></var>
+    <var name="mu_ip3d" save="1"></var>
+    <var name="mu_ip3dErr" save="1"></var>
+    <var name="mu_ip2d" save="1"></var>
+    <var name="mu_ip2dErr" save="1"></var>
+    <var name="mu_ip3dBS" save="1"></var>
+    <var name="mu_ip3dBSErr" save="1"></var>
+    <var name="mu_ip2dBS" save="0"></var>
+    <var name="mu_ip2dBSErr" save="0"></var>
+    <var name="mu_neutralHadronIso" save="1"></var>
+    <var name="mu_chargedHadronIso" save="1"></var>
+    <var name="mu_puChargedHadronIso" save="1"></var>
+    <var name="mu_ecalIso" save="1"></var>
+    <var name="mu_hcalIso" save="1"></var>
+    <var name="mu_photonIso" save="1"></var>
+    <var name="mu_trackIso" save="1"></var>
+    <var name="mu_pfIso03_sumChargedHadronPt" save="1"></var>
+    <var name="mu_pfIso03_sumChargedParticlePt" save="1"></var>
+    <var name="mu_pfIso03_sumNeutralHadronEt" save="1"></var>
+    <var name="mu_pfIso03_sumNeutralHadronEtHighThreshold" save="1"></var>
+    <var name="mu_pfIso03_sumPhotonEt" save="1"></var>
+    <var name="mu_pfIso03_sumPhotonEtHighThreshold" save="1"></var>
+    <var name="mu_pfIso03_sumPUPt" save="1"></var>
+    <var name="mu_pfIso04_sumChargedHadronPt" save="1"></var>
+    <var name="mu_pfIso04_sumChargedParticlePt" save="1"></var>
+    <var name="mu_pfIso04_sumNeutralHadronEt" save="1"></var>
+    <var name="mu_pfIso04_sumNeutralHadronEtHighThreshold" save="1"></var>
+    <var name="mu_pfIso04_sumPhotonEt" save="1"></var>
+    <var name="mu_pfIso04_sumPhotonEtHighThreshold" save="1"></var>
+    <var name="mu_pfIso04_sumPUPt" save="1"></var>
+    <var name="mu_pfMeanIso03_sumChargedHadronPt" save="0"></var>
+    <var name="mu_pfMeanIso03_sumChargedParticlePt" save="0"></var>
+    <var name="mu_pfMeanIso03_sumNeutralHadronEt" save="0"></var>
+    <var name="mu_pfMeanIso03_sumNeutralHadronEtHighThreshold" save="0"></var>
+    <var name="mu_pfMeanIso03_sumPhotonEt" save="0"></var>
+    <var name="mu_pfMeanIso03_sumPhotonEtHighThreshold" save="0"></var>
+    <var name="mu_pfMeanIso03_sumPUPt" save="0"></var>    
+    <var name="mu_pfSumIso03_sumChargedHadronPt" save="0"></var>
+    <var name="mu_pfSumIso03_sumChargedParticlePt" save="0"></var>
+    <var name="mu_pfSumIso03_sumNeutralHadronEt" save="0"></var>
+    <var name="mu_pfSumIso03_sumNeutralHadronEtHighThreshold" save="0"></var>
+    <var name="mu_pfSumIso03_sumPhotonEt" save="0"></var>
+    <var name="mu_pfSumIso03_sumPhotonEtHighThreshold" save="0"></var>
+    <var name="mu_pfSumIso03_sumPUPt" save="0"></var>
+    <var name="mu_pfMeanIso04_sumChargedHadronPt" save="0"></var>
+    <var name="mu_pfMeanIso04_sumChargedParticlePt" save="0"></var>
+    <var name="mu_pfMeanIso04_sumNeutralHadronEt" save="0"></var>
+    <var name="mu_pfMeanIso04_sumNeutralHadronEtHighThreshold" save="0"></var>
+    <var name="mu_pfMeanIso04_sumPhotonEt" save="0"></var>
+    <var name="mu_pfMeanIso04_sumPhotonEtHighThreshold" save="0"></var>
+    <var name="mu_pfMeanIso04_sumPUPt" save="0"></var>
+    <var name="mu_pfSumIso04_sumChargedHadronPt" save="0"></var>
+    <var name="mu_pfSumIso04_sumChargedParticlePt" save="0"></var>
+    <var name="mu_pfSumIso04_sumNeutralHadronEt" save="0"></var>
+    <var name="mu_pfSumIso04_sumNeutralHadronEtHighThreshold" save="0"></var>
+    <var name="mu_pfSumIso04_sumPhotonEt" save="0"></var>
+    <var name="mu_pfSumIso04_sumPhotonEtHighThreshold" save="0"></var>
+    <var name="mu_pfSumIso04_sumPUPt" save="0"></var>
+    <var name="mu_numberOfMatches" save="1"></var>
+    <var name="mu_numberOfMatchedStations" save="1"></var>    
+    <var name="mu_miniIso" save="1"></var>
+    <var name="mu_miniIsoTTH" save="1"></var>
+    <var name="mu_isGlobalMuon" save="1"></var>
+    <var name="mu_isTrackerMuon" save="1"></var>
+    <var name="mu_isStandAloneMuon" save="1"></var>
+    <var name="mu_isCaloMuon" save="1"></var>
+    <var name="mu_isPFMuon" save="1"></var>
+    <var name="mu_isRPCMuon" save="1"></var>
+    <var name="mu_isLooseMuon" save="1"></var>
+    <var name="mu_isMediumMuon" save="1"></var>
+    <var name="mu_isTightMuon" save="1"></var>
+    <var name="mu_isSoftMuon" save="1"></var>
+    <var name="mu_isHighPtMuon" save="1"></var>
+    <var name="mu_isGoodMuon_AllGlobalMuons" save="0"></var>
+    <var name="mu_isGoodMuon_AllStandAloneMuons" save="0"></var>
+    <var name="mu_isGoodMuon_AllTrackerMuons" save="0"></var>
+    <var name="mu_isGoodMuon_TrackerMuonArbitrated" save="0"></var>
+    <var name="mu_isGoodMuon_AllArbitrated" save="0"></var>
+    <var name="mu_isGoodMuon_GlobalMuonPromptTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationTight" save="0"></var>
+    <var name="mu_isGoodMuon_TM2DCompatibilityLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TM2DCompatibilityTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMOneStationLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMOneStationTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationOptimizedLowPtLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationOptimizedLowPtTight" save="0"></var>
+    <var name="mu_isGoodMuon_GMTkChiCompatibility" save="0"></var>
+    <var name="mu_isGoodMuon_GMStaChiCompatibility" save="0"></var>
+    <var name="mu_isGoodMuon_GMTkKinkTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationAngLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationAngTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMOneStationAngLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMOneStationAngTight" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationOptimizedBarrelLowPtLoose" save="0"></var>
+    <var name="mu_isGoodMuon_TMLastStationOptimizedBarrelLowPtTight" save="0"></var>
+    <var name="mu_calEnergy_em" save="0"></var>
+    <var name="mu_calEnergy_had" save="0"></var>
+    <var name="mu_calEnergy_ho" save="0"></var>
+    <var name="mu_calEnergy_emS9" save="0"></var>
+    <var name="mu_calEnergy_hadS9" save="0"></var>
+    <var name="mu_calEnergy_hoS9" save="0"></var>
+    <var name="mu_calEnergy_emS25" save="0"></var>
+    <var name="mu_calEnergy_emMax" save="0"></var>
+    <var name="mu_calEnergy_hadMax" save="0"></var>
+    <var name="mu_calEnergy_ecal_time" save="0"></var>
+    <var name="mu_calEnergy_hcal_time" save="0"></var>
+    <var name="mu_calEnergy_ecal_rawId" save="0"></var>
+    <var name="mu_calEnergy_hcal_rawId" save="0"></var>
+    <var name="mu_isolationR03_trackerVetoPt" save="0"></var>
+    <var name="mu_isolationR03_emVetoPt" save="0"></var>
+    <var name="mu_isolationR03_hadVetoPt" save="0"></var>
+    <var name="mu_isolationR03_hoVetoPt" save="0"></var>
+    <var name="mu_isolationR03_sumPt" save="0"></var>
+    <var name="mu_isolationR03_emEt" save="0"></var>
+    <var name="mu_isolationR03_hadEt" save="0"></var>
+    <var name="mu_isolationR03_hoEt" save="0"></var>
+    <var name="mu_isolationR03_nTracks" save="0"></var>
+    <var name="mu_isolationR03_nJets" save="0"></var>
+    <var name="mu_isolationR05_trackerVetoPt" save="0"></var>
+    <var name="mu_isolationR05_emVetoPt" save="0"></var>
+    <var name="mu_isolationR05_hadVetoPt" save="0"></var>
+    <var name="mu_isolationR05_hoVetoPt" save="0"></var>
+    <var name="mu_isolationR05_sumPt" save="0"></var>
+    <var name="mu_isolationR05_emEt" save="0"></var>
+    <var name="mu_isolationR05_hadEt" save="0"></var>
+    <var name="mu_isolationR05_hoEt" save="0"></var>
+    <var name="mu_isolationR05_nTracks" save="0"></var>
+    <var name="mu_isolationR05_nJets" save="0"></var>
+    <var name="mu_vx" save="1"></var>
+    <var name="mu_vy" save="1"></var>
+    <var name="mu_vz" save="1"></var>
+    <var name="mu_segmentCompatibility" save="1"></var>
+    <var name="mu_caloCompatibility" save="1"></var>
+    <var name="mu_combinedQuality_chi2LocalPosition" save="1"></var>
+    <var name="mu_combinedQuality_trkKink" save="1"></var>
+    <var name="mu_hasGlobalTrack" save="1"></var>
+    <var name="mu_globalTrackType" save="1"></var>
+    <var name="mu_globalTrack_d0" save="1"></var>
+    <var name="mu_globalTrack_z0" save="1"></var>
+    <var name="mu_globalTrack_d0Error" save="1"></var>
+    <var name="mu_globalTrack_z0Error" save="1"></var>
+    <var name="mu_globalTrack_PV_dxy" save="1"></var>
+    <var name="mu_globalTrack_PV_dz" save="1"></var>
+    <var name="mu_globalTrack_RP_dxy" save="1"></var>
+    <var name="mu_globalTrack_RP_dz" save="1"></var>
+    <var name="mu_globalTrack_BS_dxy" save="0"></var>
+    <var name="mu_globalTrack_BS_dz" save="0"></var>
+    <var name="mu_globalTrack_dxyError" save="1"></var>
+    <var name="mu_globalTrack_dzError" save="1"></var>
+    <var name="mu_globalTrack_normalizedChi2" save="1"></var>
+    <var name="mu_globalTrack_numberOfValidHits" save="1"></var>
+    <var name="mu_globalTrack_numberOfValidMuonHits" save="1"></var>
+    <var name="mu_globalTrack_numberOfLostHits" save="1"></var>
+    <var name="mu_globalTrack_pt" save="1"></var>
+    <var name="mu_globalTrack_eta" save="1"></var>
+    <var name="mu_globalTrack_phi" save="1"></var>
+    <var name="mu_globalTrack_ptError" save="1"></var>
+    <var name="mu_globalTrack_etaError" save="1"></var>
+    <var name="mu_globalTrack_phiError" save="1"></var>
+    <var name="mu_globalTrack_vx" save="1"></var>
+    <var name="mu_globalTrack_vy" save="1"></var>
+    <var name="mu_globalTrack_vz" save="1"></var>
+    <var name="mu_globalTrack_qoverp" save="1"></var>
+    <var name="mu_globalTrack_qoverpError" save="1"></var>
+    <var name="mu_globalTrack_charge" save="1"></var>
+    <var name="mu_globalTrack_trackerLayersWithMeasurement" save="0"></var>
+    <var name="mu_globalTrack_pixelLayersWithMeasurement" save="0"></var>
+    <var name="mu_globalTrack_numberOfValidStripLayersWithMonoAndStereo" save="0"></var>
+    <var name="mu_globalTrack_trackerLayersWithoutMeasurement" save="0"></var>
+    <var name="mu_globalTrack_numberOfValidPixelHits" save="0"></var>
+    <var name="mu_globalTrack_numberOfLostPixelHits" save="0"></var>
+    <var name="mu_globalTrack_numberOfInnerHits" save="0"></var>
+    <var name="mu_globalTrack_numberOfOuterHits" save="0"></var>
+    <var name="mu_globalTrack_validFraction" save="0"></var>
+    <var name="mu_bestTrackType" save="1"></var>
+    <var name="mu_hasBestTrack" save="1"></var>
+    <var name="mu_bestTrackType" save="1"></var>
+    <var name="mu_bestTrack_d0" save="1"></var>
+    <var name="mu_bestTrack_z0" save="1"></var>
+    <var name="mu_bestTrack_d0Error" save="1"></var>
+    <var name="mu_bestTrack_z0Error" save="1"></var>
+    <var name="mu_bestTrack_PV_dxy" save="1"></var>
+    <var name="mu_bestTrack_PV_dz" save="1"></var>
+    <var name="mu_bestTrack_RP_dxy" save="0"></var>
+    <var name="mu_bestTrack_RP_dz" save="0"></var>
+    <var name="mu_bestTrack_BS_dxy" save="0"></var>
+    <var name="mu_bestTrack_BS_dz" save="0"></var>
+    <var name="mu_bestTrack_dxyError" save="1"></var>
+    <var name="mu_bestTrack_dzError" save="1"></var>
+    <var name="mu_bestTrack_normalizedChi2" save="1"></var>
+    <var name="mu_bestTrack_numberOfValidHits" save="1"></var>
+    <var name="mu_bestTrack_numberOfLostHits" save="1"></var>
+    <var name="mu_bestTrack_pt" save="1"></var>
+    <var name="mu_bestTrack_eta" save="1"></var>
+    <var name="mu_bestTrack_phi" save="1"></var>
+    <var name="mu_bestTrack_ptError" save="1"></var>
+    <var name="mu_bestTrack_etaError" save="1"></var>
+    <var name="mu_bestTrack_phiError" save="1"></var>
+    <var name="mu_bestTrack_vx" save="1"></var>
+    <var name="mu_bestTrack_vy" save="1"></var>
+    <var name="mu_bestTrack_vz" save="1"></var>
+    <var name="mu_bestTrack_qoverp" save="1"></var>
+    <var name="mu_bestTrack_qoverpError" save="1"></var>
+    <var name="mu_bestTrack_charge" save="1"></var>
+    <var name="mu_bestTrack_trackerLayersWithMeasurement" save="0"></var>
+    <var name="mu_bestTrack_pixelLayersWithMeasurement" save="0"></var>
+    <var name="mu_bestTrack_numberOfValidStripLayersWithMonoAndStereo" save="0"></var>
+    <var name="mu_bestTrack_trackerLayersWithoutMeasurement" save="0"></var>
+    <var name="mu_bestTrack_numberOfValidPixelHits" save="0"></var>
+    <var name="mu_bestTrack_numberOfLostPixelHits" save="0"></var>
+    <var name="mu_bestTrack_numberOfInnerHits" save="0"></var>
+    <var name="mu_bestTrack_numberOfOuterHits" save="0"></var>
+    <var name="mu_bestTrack_validFraction" save="0"></var>    
+    <var name="mu_hasInnerTrack" save="1"></var>
+    <var name="mu_innerTrackType" save="1"></var>
+    <var name="mu_innerTrack_d0" save="1"></var>
+    <var name="mu_innerTrack_z0" save="1"></var>
+    <var name="mu_innerTrack_d0Error" save="1"></var>
+    <var name="mu_innerTrack_z0Error" save="1"></var>
+    <var name="mu_innerTrack_PV_dxy" save="1"></var>
+    <var name="mu_innerTrack_PV_dz" save="1"></var>
+    <var name="mu_innerTrack_RP_dxy" save="0"></var>
+    <var name="mu_innerTrack_RP_dz" save="0"></var>
+    <var name="mu_innerTrack_BS_dxy" save="0"></var>
+    <var name="mu_innerTrack_BS_dz" save="0"></var>
+    <var name="mu_innerTrack_dxyError" save="1"></var>
+    <var name="mu_innerTrack_dzError" save="1"></var>
+    <var name="mu_innerTrack_normalizedChi2" save="1"></var>
+    <var name="mu_innerTrack_numberOfValidHits" save="1"></var>
+    <var name="mu_innerTrack_numberOfLostHits" save="1"></var>
+    <var name="mu_innerTrack_pt" save="1"></var>
+    <var name="mu_innerTrack_eta" save="1"></var>
+    <var name="mu_innerTrack_phi" save="1"></var>
+    <var name="mu_innerTrack_ptError" save="1"></var>
+    <var name="mu_innerTrack_etaError" save="1"></var>
+    <var name="mu_innerTrack_phiError" save="1"></var>
+    <var name="mu_innerTrack_vx" save="1"></var>
+    <var name="mu_innerTrack_vy" save="1"></var>
+    <var name="mu_innerTrack_vz" save="1"></var>
+    <var name="mu_innerTrack_qoverp" save="1"></var>
+    <var name="mu_innerTrack_qoverpError" save="1"></var>
+    <var name="mu_innerTrack_charge" save="1"></var>
+    <var name="mu_innerTrack_trackerLayersWithMeasurement" save="1"></var>
+    <var name="mu_innerTrack_pixelLayersWithMeasurement" save="0"></var>
+    <var name="mu_innerTrack_numberOfValidStripLayersWithMonoAndStereo" save="0"></var>
+    <var name="mu_innerTrack_trackerLayersWithoutMeasurement" save="0"></var>
+    <var name="mu_innerTrack_numberOfValidPixelHits" save="1"></var>
+    <var name="mu_innerTrack_numberOfLostPixelHits" save="1"></var>
+    <var name="mu_innerTrack_numberOfInnerHits" save="0"></var>
+    <var name="mu_innerTrack_numberOfOuterHits" save="0"></var>
+    <var name="mu_innerTrack_validFraction" save="1"></var>
+    <var name="mu_type" save="1"></var>
+    <var name="mu_lepMVA" save="1"></var>      
+    <var name="mu_lepMVA_pt" save="1"></var>
+    <var name="mu_lepMVA_eta" save="1"></var>
+    <var name="mu_lepMVA_miniRelIsoCharged" save="1"></var>
+    <var name="mu_lepMVA_miniRelIsoNeutral" save="1"></var>
+    <var name="mu_lepMVA_jetPtRatio" save="1"></var>
+    <var name="mu_lepMVA_jetPtRelv2" save="1"></var>
+    <var name="mu_lepMVA_jetBTagCSV" save="1"></var>
+    <var name="mu_lepMVA_sip3d" save="1"></var>
+    <var name="mu_lepMVA_dxy" save="1"></var>
+    <var name="mu_lepMVA_dz" save="1"></var>
+    <var name="mu_lepMVA_mvaId" save="1"></var>
+    <var name="mu_lepMVA_jetNDauChargedMVASel" save="1"></var>
+    <var name="mu_conept" save="1"></var>
+    <var name="mu_hasMCMatch" save="1" mc="1"></var>
+    <var name="mu_gen_pt" save="1" mc="1"></var>
+    <var name="mu_gen_eta" save="1" mc="1"></var>
+    <var name="mu_gen_phi" save="1" mc="1"></var>
+    <var name="mu_gen_m" save="1" mc="1"></var>
+    <var name="mu_gen_status" save="1" mc="1"></var>
+    <var name="mu_gen_id" save="1" mc="1"></var>
+    <var name="mu_gen_charge" save="1" mc="1"></var>
+    <var name="mu_gen_dr" save="1" mc="1"></var>
+    <var name="mu_hasMCMatchPAT" save="1" mc="1"></var>
+    <var name="mu_genPAT_pt" save="1" mc="1"></var>
+    <var name="mu_genPAT_eta" save="1" mc="1"></var>
+    <var name="mu_genPAT_phi" save="1" mc="1"></var>
+    <var name="mu_genPAT_m" save="1" mc="1"></var>
+    <var name="mu_genPAT_status" save="1" mc="1"></var>
+    <var name="mu_genPAT_id" save="1" mc="1"></var>
+    <var name="mu_genPAT_charge" save="1" mc="1"></var>
+    <var name="jet_n" save="1"></var>
+    <var name="jet_pt" save="1" cut_min="30.0"></var>
+    <var name="jet_eta" save="1" cut_max="2.4"></var>
+    <var name="jet_phi" save="1"></var>
+    <var name="jet_m" save="1"></var>
+    <var name="jet_E" save="1"></var>
+    <var name="tau_n" save="1"></var>
+    <var name="tau_pt" save="1"></var>
+    <var name="tau_eta" save="1"></var>
+    <var name="tau_phi" save="1"></var>
+    <var name="tau_m" save="1"></var>
+    <var name="tau_E" save="1"></var>
+    <var name="tau_id" save="1"></var>
+    <var name="tau_charge" save="1"></var>   
+    <var name="tau_hasLeadChargedHadrCand" save="1"></var>
+    <var name="tau_leadingTrackPt" save="1"></var>
+    <var name="tau_leadingTrackCharge" save="1"></var>
+    <var name="tau_leadingTrackDz" save="1"></var>
+    <var name="tau_leadingTrackDxy" save="1"></var>
+    <var name="tau_decayMode" save="1"></var>
+    <var name="tau_decayModeFinding" save="1"></var>
+    <var name="tau_decayModeFindingNewDMs" save="1"></var>    
+    <var name="tau_puCorrPtSum" save="1"></var>
+    <var name="tau_neutralIsoPtSum" save="1"></var>
+    <var name="tau_chargedIsoPtSum" save="1"></var>
+    <var name="tau_byCombinedIsolationDeltaBetaCorrRaw3Hits" save="1"></var>
+    <var name="tau_byLooseCombinedIsolationDeltaBetaCorr3Hits" save="1"></var>
+    <var name="tau_byMediumCombinedIsolationDeltaBetaCorr3Hits" save="1"></var>
+    <var name="tau_byTightCombinedIsolationDeltaBetaCorr3Hits" save="1"></var>
+    <var name="tau_byLooseIsolationMVArun2v1DBdR03oldDMwLT" save="1"></var>
+    <var name="tau_byMediumIsolationMVArun2v1DBdR03oldDMwLT" save="1"></var>
+    <var name="tau_byTightIsolationMVArun2v1DBdR03oldDMwLT" save="1"></var>
+    <var name="tau_byVTightIsolationMVArun2v1DBdR03oldDMwLT" save="1"></var>
+    <var name="tau_byVLooseIsolationMVArun2v1DBdR03oldDMwLT" save="1"></var>
+    <var name="tau_againstMuonLoose3" save="1"></var>
+    <var name="tau_againstMuonTight3" save="1"></var>
+    <var name="tau_againstElectronVLooseMVA6" save="1"></var>
+    <var name="tau_againstElectronLooseMVA6" save="1"></var>
+    <var name="tau_againstElectronMediumMVA6" save="1"></var>
+    <var name="tau_againstElectronTightMVA6" save="1"></var>
+    <var name="tau_pfEssential_jet_pt" save="1"></var>
+    <var name="tau_pfEssential_jet_eta" save="1"></var>
+    <var name="tau_pfEssential_jet_phi" save="1"></var>
+    <var name="tau_pfEssential_jet_m" save="1"></var>
+    <var name="tau_pfEssential_jetCorr_pt" save="1"></var>
+    <var name="tau_pfEssential_jetCorr_eta" save="1"></var>
+    <var name="tau_pfEssential_jetCorr_phi" save="1"></var>
+    <var name="tau_pfEssential_jetCorr_m" save="1"></var>
+    <var name="tau_pfEssential_hasSV" save="1"></var>
+    <var name="tau_pfEssential_sv_x" save="1"></var>
+    <var name="tau_pfEssential_sv_y" save="1"></var>
+    <var name="tau_pfEssential_sv_z" save="1"></var>   
+    <var name="tau_pfEssential_flightLengthSig" save="1"></var>
+    <var name="tau_pfEssential_dxy" save="1"></var>
+    <var name="tau_pfEssential_dxy_error" save="1"></var>
+    <var name="tau_pfEssential_dxy_Sig" save="1"></var>
+    <var name="jet_ntrk" save="1"></var>    
+    <var name="jet_JBP" save="1"></var>
+    <var name="jet_JP" save="1"></var>
+    <var name="jet_TCHP" save="1"></var>
+    <var name="jet_TCHE" save="1"></var>
+    <var name="jet_SSVHE" save="1"></var>
+    <var name="jet_SSVHP" save="1"></var>
+    <var name="jet_CMVA" save="1"></var>
+    <var name="jet_CSVv2" save="1"></var>
+    <var name="jet_cMVAv2" save="1"></var>
+    <var name="jet_DeepCSVProbudsg" save="1"></var>
+    <var name="jet_DeepCSVProbb" save="1"></var>
+    <var name="jet_DeepCSVProbbb" save="1"></var>
+    <var name="jet_DeepCSVProbc" save="1"></var>
+    <var name="jet_DeepCSVProbcc" save="1"></var>
+    <var name="jet_CharmCvsL" save="1"></var>
+    <var name="jet_CharmCvsB" save="1"></var>
+    <var name="jet_partonFlavour" save="1"></var>
+    <var name="jet_hadronFlavour" save="1"></var>
+    <var name="jet_neutralHadronEnergy" save="1"></var>
+    <var name="jet_neutralEmEnergy" save="1"></var>
+    <var name="jet_chargedHadronEnergy" save="1"></var>
+    <var name="jet_chargedEmEnergy" save="1"></var>
+    <var name="jet_electronEnergy" save="1"></var>
+    <var name="jet_muonEnergy" save="1"></var>
+    <var name="jet_photonEnergy" save="1"></var>
+    <var name="jet_jetArea" save="1"></var>
+    <var name="jet_chargedMultiplicity" save="1"></var>
+    <var name="jet_neutralMultiplicity" save="1"></var>
+    <var name="jet_chargedHadronMultiplicity" save="0"></var>
+    <var name="jet_jecFactorUncorrected" save="1"></var>
+    <var name="jet_jecFactorL1FastJet" save="1"></var>
+    <var name="jet_jecFactorL2Relative" save="1"></var>
+    <var name="jet_jecFactorL3Absolute" save="1"></var>
+    <var name="jet_Unc" save="1"></var>
+    <var name="jet_neutralHadronEnergyFraction" save="1"></var>
+    <var name="jet_neutralEmEnergyFraction" save="1"></var>
+    <var name="jet_chargedHadronEnergyFraction" save="1"></var>
+    <var name="jet_muonEnergyFraction" save="1"></var>
+    <var name="jet_chargedEmEnergyFraction" save="1"></var>
+    <var name="jet_pileupJetId" save="1"></var>
+    <var name="jet_tightJetID" save="1"></var>
+    <var name="jet_tightLepVetoJetID" save="1"></var>
+    <var name="jet_qgtag" save="1"></var>
+    <var name="jet_hasGenJet" save="1" mc="1"></var>
+    <var name="jet_genJet_pt" save="1" mc="1"></var>
+    <var name="jet_genJet_eta" save="1" mc="1"></var>
+    <var name="jet_genJet_phi" save="1" mc="1"></var>
+    <var name="jet_genJet_m" save="1" mc="1"></var>
+    <var name="jet_genJet_E" save="1" mc="1"></var>
+    <var name="jet_genJet_status" save="1" mc="1"></var>
+    <var name="jet_genJet_id" save="1" mc="1"></var>
+    <var name="jet_hasGenParton" save="1" mc="1"></var>
+    <var name="jet_genParton_pt" save="1" mc="1"></var>
+    <var name="jet_genParton_eta" save="1" mc="1"></var>
+    <var name="jet_genParton_phi" save="1" mc="1"></var>
+    <var name="jet_genParton_m" save="1" mc="1"></var>
+    <var name="jet_genParton_E" save="1" mc="1"></var>
+    <var name="jet_genParton_status" save="1" mc="1"></var>
+    <var name="jet_genParton_id" save="1" mc="1"></var>
+    <var name="genJet_n" save="1" mc="1"></var>
+    <var name="genJet_pt" save="1" mc="1"></var>
+    <var name="genJet_eta" save="1" mc="1"></var>
+    <var name="genJet_phi" save="1" mc="1"></var>
+    <var name="genJet_m" save="1" mc="1"></var>
+    <var name="genJet_E" save="1" mc="1"></var>
+    <var name="genJet_emEnergy" save="1" mc="1"></var>
+    <var name="genJet_hadEnergy" save="1" mc="1"></var>
+    <var name="genJet_invisibleEnergy" save="1" mc="1"></var>
+    <var name="genJet_auxiliaryEnergy" save="1" mc="1"></var>
+    <var name="genJet_flavour" save="1" mc="1"></var>
+    <var name="jetPuppi_do" save="0"></var>
+    <var name="jetPuppi_n" save="0"></var>
+    <var name="jetPuppi_pt" save="0"></var>
+    <var name="jetPuppi_eta" save="0"></var>
+    <var name="jetPuppi_phi" save="0"></var>
+    <var name="jetPuppi_m" save="0"></var>
+    <var name="jetPuppi_E" save="0"></var>
+    <var name="jetPuppi_ntrk" save="0"></var>
+    <var name="jetPuppi_JBP" save="0"></var>
+    <var name="jetPuppi_JP" save="0"></var>
+    <var name="jetPuppi_TCHP" save="0"></var>
+    <var name="jetPuppi_TCHE" save="0"></var>
+    <var name="jetPuppi_SSVHE" save="0"></var>
+    <var name="jetPuppi_SSVHP" save="0"></var>
+    <var name="jetPuppi_CMVA" save="0"></var>
+    <var name="jetPuppi_CSVv2" save="0"></var>
+    <var name="jetPuppi_partonFlavour" save="0"></var>
+    <var name="jetPuppi_hadronFlavour" save="0"></var>
+    <var name="jetPuppi_neutralHadronEnergy" save="0"></var>
+    <var name="jetPuppi_neutralEmEnergy" save="0"></var>
+    <var name="jetPuppi_chargedHadronEnergy" save="0"></var>
+    <var name="jetPuppi_chargedEmEnergy" save="0"></var>
+    <var name="jetPuppi_electronEnergy" save="0"></var>
+    <var name="jetPuppi_muonEnergy" save="0"></var>
+    <var name="jetPuppi_photonEnergy" save="0"></var>
+    <var name="jetPuppi_chargedMultiplicity" save="0"></var>
+    <var name="jetPuppi_neutralMultiplicity" save="0"></var>
+    <var name="jetPuppi_chargedHadronMultiplicity" save="0"></var>    
+    <var name="jetPuppi_jecFactorUncorrected" save="0"></var>
+    <var name="jetPuppi_jecFactorL1FastJet" save="0"></var>
+    <var name="jetPuppi_jecFactorL2Relative" save="0"></var>
+    <var name="jetPuppi_jecFactorL3Absolute" save="0"></var>    
+    <var name="jetPuppi_pileupJetId" save="0"></var>    
+    <var name="jetPuppi_hasGenJet" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_pt" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_eta" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_phi" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_m" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_E" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_status" save="0" mc="1"></var>
+    <var name="jetPuppi_genJet_id" save="0" mc="1"></var>
+    <var name="jetPuppi_hasGenParton" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_pt" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_eta" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_phi" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_m" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_E" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_status" save="0" mc="1"></var>
+    <var name="jetPuppi_genParton_id" save="0" mc="1"></var>
+    <var name="ak8jet_do" save="0"></var>
+    <var name="ak8jet_n" save="0"></var>
+    <var name="ak8jet_pt" save="0" ></var>
+    <var name="ak8jet_eta" save="0"></var>
+    <var name="ak8jet_phi" save="0"></var>
+    <var name="ak8jet_m" save="0"></var>
+    <var name="ak8jet_E" save="0"></var>
+    <var name="ak8jet_tau1" save="0"></var>
+    <var name="ak8jet_tau2" save="0"></var>
+    <var name="ak8jet_tau3" save="0"></var>
+    <var name="ak8jet_softdrop_mass" save="0"></var>
+    <var name="ak8jet_trimmed_mass" save="0"></var>
+    <var name="ak8jet_pruned_mass" save="0"></var>
+    <var name="ak8jet_filtered_mass" save="0"></var>
+    <var name="ak8jet_minMass" save="0"></var>
+    <var name="ak8jet_topMass" save="0"></var>
+    <var name="ak8jet_nSubJets" save="0"></var>
+    <var name="ak8jetntrk" save="0"></var>
+    <var name="ak8jet_CSVv2" save="0"></var>
+    <var name="ak8jet_partonFlavour" save="0"></var>
+    <var name="ak8jet_hadronFlavour" save="0"></var>
+    <var name="ak8jet_neutralHadronEnergy" save="0"></var>
+    <var name="ak8jet_neutralEmEnergy" save="0"></var>
+    <var name="ak8jet_chargedHadronEnergy" save="0"></var>
+    <var name="ak8jet_chargedEmEnergy" save="0"></var>
+    <var name="ak8jet_electronEnergy" save="0"></var>
+    <var name="ak8jet_muonEnergy" save="0"></var>
+    <var name="ak8jet_photonEnergy" save="0"></var>
+    <var name="ak8jet_jetArea" save="0"></var>
+    <var name="ak8jet_chargedMultiplicity" save="0"></var>
+    <var name="ak8jet_neutralMultiplicity" save="0"></var>
+    <var name="ak8jet_chargedHadronMultiplicity" save="0"></var>
+    <var name="ak8jet_jecFactorUncorrected" save="0"></var>
+    <var name="ak8jet_jecFactorL1FastJet" save="0"></var>
+    <var name="ak8jet_jecFactorL2Relative" save="0"></var>
+    <var name="ak8jet_jecFactorL3Absolute" save="0"></var>
+    <var name="ak8jet_pileupJetId" save="0"></var>
+    <var name="ak8jet_tightJetID" save="0"></var>
+    <var name="ak8jet_hasGenJet" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_pt" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_eta" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_phi" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_m" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_E" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_status" save="0" mc="1"></var>
+    <var name="ak8jet_genJet_id" save="0" mc="1"></var>
+    <var name="ak8jet_hasGenParton" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_pt" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_eta" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_phi" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_m" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_E" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_status" save="0" mc="1"></var>
+    <var name="ak8jet_genParton_id" save="0" mc="1"></var>
+    <var name="ak10jet_do" save="0"></var>
+    <var name="ak10jet_n" save="0"></var>
+    <var name="ak10jet_pt" save="0" ></var>
+    <var name="ak10jet_eta" save="0"></var>
+    <var name="ak10jet_phi" save="0"></var>
+    <var name="ak10jet_m" save="0"></var>
+    <var name="ak10jet_E" save="0"></var>
+    <var name="ak10jet_tau1" save="0"></var>
+    <var name="ak10jet_tau2" save="0"></var>
+    <var name="ak10jet_tau3" save="0"></var>
+    <var name="ak10jet_softdrop_mass" save="0"></var>
+    <var name="ak10jet_trimmed_mass" save="0"></var>
+    <var name="ak10jet_pruned_mass" save="0"></var>
+    <var name="ak10jet_filtered_mass" save="0"></var>
+    <var name="ak10jet_minMass" save="0"></var>
+    <var name="ak10jet_topMass" save="0"></var>
+    <var name="ak10jet_nSubJets" save="0"></var>
+    <var name="ak10jetntrk" save="0"></var>
+    <var name="ak10jet_CSVv2" save="0"></var>
+    <var name="ak10jet_partonFlavour" save="0"></var>
+    <var name="ak10jet_hadronFlavour" save="0"></var>
+    <var name="ak10jet_neutralHadronEnergy" save="0"></var>
+    <var name="ak10jet_neutralEmEnergy" save="0"></var>
+    <var name="ak10jet_chargedHadronEnergy" save="0"></var>
+    <var name="ak10jet_chargedEmEnergy" save="0"></var>
+    <var name="ak10jet_electronEnergy" save="0"></var>
+    <var name="ak10jet_muonEnergy" save="0"></var>
+    <var name="ak10jet_photonEnergy" save="0"></var>
+    <var name="ak10jet_jetArea" save="0"></var>
+    <var name="ak10jet_chargedMultiplicity" save="0"></var>
+    <var name="ak10jet_neutralMultiplicity" save="0"></var>
+    <var name="ak10jet_chargedHadronMultiplicity" save="0"></var>
+    <var name="ak10jet_jecFactorUncorrected" save="0"></var>
+    <var name="ak10jet_jecFactorL1FastJet" save="0"></var>
+    <var name="ak10jet_jecFactorL2Relative" save="0"></var>
+    <var name="ak10jet_jecFactorL3Absolute" save="0"></var>
+    <var name="ak10jet_pileupJetId" save="0"></var>
+    <var name="ak10jet_tightJetID" save="0"></var>
+    <var name="ak10jet_hasGenJet" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_pt" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_eta" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_phi" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_m" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_E" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_status" save="0" mc="1"></var>
+    <var name="ak10jet_genJet_id" save="0" mc="1"></var>
+    <var name="ak10jet_hasGenParton" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_pt" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_eta" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_phi" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_m" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_E" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_status" save="0" mc="1"></var>
+    <var name="ak10jet_genParton_id" save="0" mc="1"></var>
+    <var name="pfcand_do" save="0"></var>
+    <var name="sel_pfcand" save="1"></var>
+    <var name="pfcand_n" save="1"></var>
+    <var name="pfcand_pt" save="1"></var>
+    <var name="pfcand_eta" save="1"></var>
+    <var name="pfcand_phi" save="1"></var>
+    <var name="pfcand_E" save="1"></var>
+    <var name="pfcand_charge" save="1"></var>
+    <var name="pfcand_id" save="1"></var>
+    <var name="pfcand_dz" save="1"></var>
+    <var name="pfcand_trackIso" save="1"></var>
+    <var name="pfch_loose_n" save="1"></var>
+    <var name="pfch_loose_sumpt" save="1"></var>
+    <var name="pfch_tight_n" save="1"></var>
+    <var name="pfch_tight_sumpt" save="1"></var>
+    <var name="gen_PVz" save="0" mc="1"></var>
+    <var name="gen_all" save="1" mc="1"></var>
+    <var name="gen_stop" save="0" mc="1"></var>
+    <var name="gen_stop_mass" save="1" mc="1"></var>
+</variables>

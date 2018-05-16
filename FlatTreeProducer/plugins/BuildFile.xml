@@ -1,0 +1,11 @@
+<use name="FWCore/Framework"/>
+<use name="FWCore/PluginManager"/>
+<use name="FWCore/ParameterSet"/>
+<use name="DataFormats/PatCandidates"/>
+<use name="PhysicsTools/UtilAlgos"/>
+<use name="EgammaAnalysis/ElectronTools"/>
+<use name="CondFormats/JetMETObjects"/>
+<use name="JetMETCorrections/Objects"/>
+<use name="HLTrigger/HLTcore"/>
+#<flags LDFLAGS="-L$CMSSW_BASE/src/FlatTreeProducer/tinyxml2 -ltinyxml2"/>
+<flags EDM_PLUGIN="1"/>

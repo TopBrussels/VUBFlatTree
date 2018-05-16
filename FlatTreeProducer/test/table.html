@@ -1,0 +1,86 @@
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<script>
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","conf.xml",false);
+xmlhttp.send(null);
+if (xmlhttp.status==404)
+{
+  alert("XML could not be found");
+}
+xmlDoc=xmlhttp.responseXML;
+
+document.write("<table><tr><th>Name</th><th>Stored in MC</th><th>Stored in Data</th><th>Description</th></tr>");
+var x=xmlDoc.getElementsByTagName("var");
+
+document.write("<h1>IPHCFlatTree variables</h1>");
+document.write("Total number: ");
+document.write("<b>")
+document.write(x.length)
+document.write("</b><br>")
+
+var nVarMC = 0;
+var nVarData = 0;
+var tableOut = "";
+for (i=0;i<x.length;i++)
+  {
+  var noColor = "FFCCFF";
+  var yesColor = "00CC33";
+  var isMC = x[i].getAttribute("mc");
+  var varName = x[i].getAttribute("name");
+  var isSaved = x[i].getAttribute("save");
+  var desc = x[i].getAttribute("desc");
+  var isSavedMC = "NO";
+  if( isSaved == "1" ) isSavedMC = "YES";
+  var isSavedData = "NO";
+  if( isSaved == "1" && isMC != "1" ) isSavedData = "YES";
+  tableOut=tableOut.concat("<tr><td>");
+  tableOut=tableOut.concat(varName);
+  var bgColorMC = noColor;
+  if( isSavedMC == "YES" ) bgColorMC = yesColor;
+  tableOut=tableOut.concat("</td><td align=\"center\" bgcolor=\"");
+  tableOut=tableOut.concat(bgColorMC);
+  tableOut=tableOut.concat("\">");
+  tableOut=tableOut.concat(isSavedMC);
+  var bgColorData = noColor;
+  if( isSavedData == "YES" ) bgColorData = yesColor;
+  tableOut=tableOut.concat("</td><td align=\"center\" bgcolor=\"");
+  tableOut=tableOut.concat(bgColorData);
+  tableOut=tableOut.concat("\">");
+  tableOut=tableOut.concat(isSavedData);
+  tableOut=tableOut.concat("</td>");
+  tableOut=tableOut.concat("<td>");
+  if( desc != null ) tableOut=tableOut.concat(desc);
+  tableOut=tableOut.concat("</td></tr>");
+  if( isSavedMC == "YES" ) nVarMC++;
+  if( isSavedData == "YES" ) nVarData++;
+  }
+tableOut=tableOut.concat("</table>");
+
+document.write("Stored for MC: ");
+document.write("<b>")
+document.write(nVarMC)
+document.write("</b><br>")
+
+document.write("Stored for Data: ");
+document.write("<b>")
+document.write(nVarData)
+document.write("</b><br>")
+
+document.write(tableOut)
+</script>
+
+</body>
+</html>
