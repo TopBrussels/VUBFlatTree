@@ -973,4 +973,5 @@
     <var name="gen_all" save="1" mc="1"></var>
     <var name="gen_stop" save="0" mc="1"></var>
     <var name="gen_stop_mass" save="1" mc="1"></var>
+    <var name="genTTX_id" save="1" mc="1"></var>
 </variables>
