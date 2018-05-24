@@ -502,23 +502,41 @@ process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
 process.runQG = cms.Sequence()
 if options.runQG:
     process.runQG = cms.Sequence(process.QGTagger)
-    
-process.p = cms.Path(
-                     #                     process.calibratedPatElectrons+
-                     process.rerunMvaIsolationSequence+
-                     process.NewTauIDsEmbedded+
-                     process.electronMVAValueMapProducer+
-                     process.egmGsfElectronIDSequence+
-                     #                     process.regressionApplication+
-                     process.METSignificance+
-                     process.jecSequence+
-                     process.runQG+
-                     #                     process.BadChargedCandidateFilter+
-                     #                     process.BadPFMuonFilter+
-                     process.slimmedPatTriggerUnpacked+
-                     process.selectedHadronsAndPartons+
-                     process.genJetFlavourInfos+
-                     process.matchGenBHadron+
-                     process.matchGenCHadron+ 
-                     process.FlatTree
-)
+
+if not options.isData:    
+    process.p = cms.Path(
+                       #                     process.calibratedPatElectrons+
+                       process.rerunMvaIsolationSequence+
+                       process.NewTauIDsEmbedded+
+                       process.electronMVAValueMapProducer+
+                       process.egmGsfElectronIDSequence+
+                       #                     process.regressionApplication+
+                       process.METSignificance+
+                       process.jecSequence+
+                       process.runQG+
+                       #                     process.BadChargedCandidateFilter+
+                       #                     process.BadPFMuonFilter+
+                       process.slimmedPatTriggerUnpacked+
+                       process.selectedHadronsAndPartons+
+                       process.genJetFlavourInfos+
+                       process.matchGenBHadron+
+                       process.matchGenCHadron+ 
+                       process.FlatTree
+    )
+ 
+else:
+    process.p = cms.Path(
+                       #                     process.calibratedPatElectrons+
+                       process.rerunMvaIsolationSequence+
+                       process.NewTauIDsEmbedded+
+                       process.electronMVAValueMapProducer+
+                       process.egmGsfElectronIDSequence+
+                       #                     process.regressionApplication+
+                       process.METSignificance+
+                       process.jecSequence+
+                       process.runQG+
+                       #                     process.BadChargedCandidateFilter+
+                       #                     process.BadPFMuonFilter+
+                       process.slimmedPatTriggerUnpacked+
+                       process.FlatTree
+    )

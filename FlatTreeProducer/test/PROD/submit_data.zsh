@@ -2,7 +2,7 @@
 
 slist="list.txt"
 pset="crabConfigTemplate.py"
-ver="Testproxy"
+ver="Test2017Analysis_Data"
 prodv="/store/user/smoortga/Analysis/FlatTree/${ver}/"
 
 rm -f crabConfig.py*
