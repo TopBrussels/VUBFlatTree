@@ -96,6 +96,15 @@ void GenTTXCategorizer::Run(FlatTree &tree,
         // Skip jet if it contains a b hadron directly from top quark decay
         if(bJetFromTopIds.count(jetId) > 0) continue;
         additionalBJetIds.push_back(jetId);
+        
+        tree.genTTXJet_n += 1;
+        tree.genTTXJet_pt.push_back( genTTXJets->at(jetId).pt() );
+        tree.genTTXJet_eta.push_back( genTTXJets->at(jetId).eta() );
+        tree.genTTXJet_phi.push_back( genTTXJets->at(jetId).phi() );
+        tree.genTTXJet_m.push_back( genTTXJets->at(jetId).mass() );
+        tree.genTTXJet_E.push_back( genTTXJets->at(jetId).energy() );
+        tree.genTTXJet_flavour.push_back( 5 );
+        
      }
     
    // Find additional c jets
@@ -106,7 +115,22 @@ void GenTTXCategorizer::Run(FlatTree &tree,
 	
         // Skip jet if it contains a b hadron, thus being a b jet
         if(bJetFromTopIds.count(jetId) > 0) continue;
+        
+        // jets with B->D decays are prioritized for being b-jets. Therefore check if the jet is not already in additionalBJetIDs.
+        if (!(std::find(additionalBJetIds.begin(), additionalBJetIds.end(), jetId) != additionalBJetIds.end())) {
+            tree.genTTXJet_n += 1;
+            tree.genTTXJet_pt.push_back( genTTXJets->at(jetId).pt() );
+            tree.genTTXJet_eta.push_back( genTTXJets->at(jetId).eta() );
+            tree.genTTXJet_phi.push_back( genTTXJets->at(jetId).phi() );
+            tree.genTTXJet_m.push_back( genTTXJets->at(jetId).mass() );
+            tree.genTTXJet_E.push_back( genTTXJets->at(jetId).energy() );
+            tree.genTTXJet_flavour.push_back( 4 );
+        }
+        
+        // regardless of the jetID already being in additionalBJetIds, still save it also in additionalCJetIds as the categorization afterwards will take care of the B-priority
         additionalCJetIds.push_back(jetId);
+
+        
      }
         
    // Categorize event based on number of additional b/c jets

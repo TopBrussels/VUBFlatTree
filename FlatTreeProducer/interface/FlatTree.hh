@@ -1176,6 +1176,15 @@ class FlatTree
    std::vector<float> genJet_auxiliaryEnergy;
    std::vector<int>   genJet_flavour;
    
+   // genTTXJets : identify the additional heavy-flavour jets in tt+HF events using GenTTXCategorizer.cc
+   int genTTXJet_n;
+   std::vector<float> genTTXJet_pt;
+   std::vector<float> genTTXJet_eta;
+   std::vector<float> genTTXJet_phi;
+   std::vector<float> genTTXJet_m;
+   std::vector<float> genTTXJet_E;
+   std::vector<int>   genTTXJet_flavour;
+   
    // PFcands
    
    int pfcand_n;

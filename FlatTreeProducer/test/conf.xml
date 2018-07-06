@@ -797,6 +797,13 @@
     <var name="genJet_invisibleEnergy" save="1" mc="1"></var>
     <var name="genJet_auxiliaryEnergy" save="1" mc="1"></var>
     <var name="genJet_flavour" save="1" mc="1"></var>
+    <var name="genTTXJet_n" save="1" mc="1"></var>
+    <var name="genTTXJet_pt" save="1" mc="1"></var>
+    <var name="genTTXJet_eta" save="1" mc="1"></var>
+    <var name="genTTXJet_phi" save="1" mc="1"></var>
+    <var name="genTTXJet_m" save="1" mc="1"></var>
+    <var name="genTTXJet_E" save="1" mc="1"></var>
+    <var name="genTTXJet_flavour" save="1" mc="1"></var>
     <var name="jetPuppi_do" save="0"></var>
     <var name="jetPuppi_n" save="0"></var>
     <var name="jetPuppi_pt" save="0"></var>

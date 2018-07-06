@@ -1139,6 +1139,18 @@ void FlatTree::Init()
    genJet_auxiliaryEnergy.clear();
    genJet_flavour.clear();
    
+   //------------------------
+   //  GenTTXJet collection
+   //------------------------
+   
+   genTTXJet_n = 0;
+   genTTXJet_pt.clear();
+   genTTXJet_eta.clear();
+   genTTXJet_phi.clear();
+   genTTXJet_m.clear();
+   genTTXJet_E.clear();
+   genTTXJet_flavour.clear();
+   
    pfcand_n = 0;
    pfcand_pt.clear();
    pfcand_eta.clear();
@@ -2293,6 +2305,19 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("genJet_invisibleEnergy") ) tree->Branch("genJet_invisibleEnergy", "std::vector<float>", &genJet_invisibleEnergy, buffersize);
    if( doWrite("genJet_auxiliaryEnergy") ) tree->Branch("genJet_auxiliaryEnergy", "std::vector<float>", &genJet_auxiliaryEnergy, buffersize);
    if( doWrite("genJet_flavour") ) tree->Branch("genJet_flavour", "std::vector<int>", &genJet_flavour, buffersize);
+    
+   //------------------------
+   //  genTTXJet collection
+   //------------------------
+   
+   if( doWrite("genTTXJet_n") ) tree->Branch("genTTXJet_n", &genTTXJet_n, "genTTXJet_n/I", buffersize);
+   if( doWrite("genTTXJet_pt") ) tree->Branch("genTTXJet_pt", "std::vector<float>", &genTTXJet_pt, buffersize);
+   if( doWrite("genTTXJet_eta") ) tree->Branch("genTTXJet_eta", "std::vector<float>", &genTTXJet_eta, buffersize);
+   if( doWrite("genTTXJet_phi") ) tree->Branch("genTTXJet_phi", "std::vector<float>", &genTTXJet_phi, buffersize);
+   if( doWrite("genTTXJet_m") ) tree->Branch("genTTXJet_m", "std::vector<float>", &genTTXJet_m, buffersize);
+   if( doWrite("genTTXJet_E") ) tree->Branch("genTTXJet_E", "std::vector<float>", &genTTXJet_E, buffersize);
+   if( doWrite("genTTXJet_flavour") ) tree->Branch("genTTXJet_flavour", "std::vector<int>", &genTTXJet_flavour, buffersize);
+
 
    if( doWrite("pfcand_do") )
      {	
