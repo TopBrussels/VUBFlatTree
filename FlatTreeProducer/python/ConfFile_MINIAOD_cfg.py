@@ -98,19 +98,21 @@ if options.isData:
 # Re-apply JEC to AK4
 from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
 
-#bTagDiscriminators = [
-#    'deepFlavourJetTags:probudsg',
-#    'deepFlavourJetTags:probb',
-#    'deepFlavourJetTags:probc',
-#    'deepFlavourJetTags:probbb',
-#    'deepFlavourJetTags:probcc',
-#]
+
 
 updateJetCollection(
     process,
     jetSource = cms.InputTag('slimmedJets'),
     labelName = 'UpdatedJEC',
     jetCorrections = ('AK4PFchs', corList, 'None')
+	#btagDiscriminators = [
+    #  'pfDeepFlavourJetTags:probb',
+    #  'pfDeepFlavourJetTags:probbb',
+    #  'pfDeepFlavourJetTags:problepb',
+    #  'pfDeepFlavourJetTags:probc',
+    #  'pfDeepFlavourJetTags:probuds',
+    #  'pfDeepFlavourJetTags:probg'
+    #  ]
 )
 
 #updateJetCollection(
@@ -201,7 +203,9 @@ process.load("RecoEgamma.ElectronIdentification.ElectronMVAValueMapProducer_cfi"
 
 #process.load('EgammaAnalysis.ElectronTools.regressionApplication_cff')
 
-# MET
+#####################
+#     MET           #
+#####################
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/MissingETOptionalFiltersRun2
 #process.load('CommonTools.RecoAlgos.HBHENoiseFilterResultProducer_cfi')
 #process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
@@ -225,6 +229,15 @@ process.load("RecoEgamma.ElectronIdentification.ElectronMVAValueMapProducer_cfi"
 #    inputLabel = cms.InputTag('HBHENoiseFilterResultProducer','HBHEIsoNoiseFilterResult'),
 #    reverseDecision = cms.bool(False)
 #)
+
+from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
+runMetCorAndUncFromMiniAOD (
+        process,
+        isData = options.isData,
+        fixEE2017 = True,
+        fixEE2017Params = {'userawPt': True, 'PtThreshold':50.0, 'MinEtaThreshold':2.65, 'MaxEtaThreshold': 3.139} ,
+        postfix = "ModifiedMET"
+)
 
 #####################
 # MET Significance  #
@@ -279,8 +292,9 @@ process.source = cms.Source("PoolSource",
          #'/store/data/Run2017D/MuonEG/MINIAOD/17Nov2017-v1/50000/3E5F02AC-33E7-E711-AE42-A0369FC5FBA4.root'
 #         'file:0CF65340-0200-E811-ABB7-0025905C53F0.root'
 #         '/store/mc/RunIIFall17MiniAOD/ttHJetToNonbb_M125_TuneCP5_13TeV_amcatnloFXFX_madspin_pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/20000/0CF65340-0200-E811-ABB7-0025905C53F0.root'
-         '/store/mc/RunIIFall17MiniAOD/TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/50000/08DE33C0-87EB-E711-819D-0242AC1C0500.root'
-        )
+         #'/store/mc/RunIIFall17MiniAOD/TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/50000/08DE33C0-87EB-E711-819D-0242AC1C0500.root'
+         'root://cmsxrootd.fnal.gov///store/mc/RunIIFall17MiniAODv2/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU2017_12Apr2018_new_pmx_94X_mc2017_realistic_v14-v1/00000/20354412-9AAC-E811-81CA-0025905B861C.root'
+		)
 )
 
 ############
@@ -463,7 +477,7 @@ process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
                   ak10jetInput             = cms.InputTag(jetsNameAK10),
                   genJetInput              = cms.InputTag("slimmedGenJets"),
                   jetFlavorMatchTokenInput = cms.InputTag("jetFlavourMatch"),
-                  metInput                 = cms.InputTag("slimmedMETs"),
+                  metInput                 = cms.InputTag("slimmedMETsModifiedMET"),
                   metPuppiInput            = cms.InputTag("slimmedMETsPuppi"),
                   metNoHFInput             = cms.InputTag("slimmedMETsNoHF"),
                   metSigInput              = cms.InputTag("METSignificance"),
@@ -511,6 +525,7 @@ if not options.isData:
                        process.electronMVAValueMapProducer+
                        process.egmGsfElectronIDSequence+
                        #                     process.regressionApplication+
+					   process.fullPatMetSequenceModifiedMET+
                        process.METSignificance+
                        process.jecSequence+
                        process.runQG+
@@ -532,6 +547,7 @@ else:
                        process.electronMVAValueMapProducer+
                        process.egmGsfElectronIDSequence+
                        #                     process.regressionApplication+
+					   process.fullPatMetSequenceModifiedMET+
                        process.METSignificance+
                        process.jecSequence+
                        process.runQG+
