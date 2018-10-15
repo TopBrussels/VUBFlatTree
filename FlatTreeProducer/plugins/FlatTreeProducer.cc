@@ -2960,7 +2960,15 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
         ftree->jet_DeepCSVProbb.push_back(jet.bDiscriminator("pfDeepCSVJetTags:probb"));
         ftree->jet_DeepCSVProbc.push_back(jet.bDiscriminator("pfDeepCSVJetTags:probc"));
         ftree->jet_DeepCSVProbbb.push_back(jet.bDiscriminator("pfDeepCSVJetTags:probbb"));
-        ftree->jet_DeepCSVProbcc.push_back(jet.bDiscriminator("pfDeepCSVJetTags:probcc"));	
+        ftree->jet_DeepCSVProbcc.push_back(jet.bDiscriminator("pfDeepCSVJetTags:probcc"));
+		
+		ftree->jet_DeepFlavourProbuds.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:probuds"));
+		ftree->jet_DeepFlavourProbg.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:probg"));
+        ftree->jet_DeepFlavourProbb.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:probb"));
+        ftree->jet_DeepFlavourProbbb.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:probbb"));
+        ftree->jet_DeepFlavourProblepb.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:problepb"));	
+		ftree->jet_DeepFlavourProbc.push_back(jet.bDiscriminator("pfDeepFlavourJetTags:probc"));
+			
 	
 	/*
 	 cout<<"jet.bDiscriminator(pfCombinedInclusiveSecondaryVertexV2BJetTags) = "<<jet.bDiscriminator("pfCombinedInclusiveSecondaryVertexV2BJetTags")<<endl;

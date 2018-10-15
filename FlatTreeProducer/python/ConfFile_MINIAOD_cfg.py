@@ -98,22 +98,45 @@ if options.isData:
 # Re-apply JEC to AK4
 from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
 
-
-
 updateJetCollection(
-    process,
-    jetSource = cms.InputTag('slimmedJets'),
-    labelName = 'UpdatedJEC',
-    jetCorrections = ('AK4PFchs', corList, 'None')
-	#btagDiscriminators = [
-    #  'pfDeepFlavourJetTags:probb',
-    #  'pfDeepFlavourJetTags:probbb',
-    #  'pfDeepFlavourJetTags:problepb',
-    #  'pfDeepFlavourJetTags:probc',
-    #  'pfDeepFlavourJetTags:probuds',
-    #  'pfDeepFlavourJetTags:probg'
-    #  ]
+   process,
+   jetSource = cms.InputTag('slimmedJets'),
+   pvSource = cms.InputTag('offlineSlimmedPrimaryVertices'),
+   svSource = cms.InputTag('slimmedSecondaryVertices'),
+   jetCorrections = ('AK4PFchs', corList, 'None'),
+   btagDiscriminators = [
+   		#'pfCombinedInclusiveSecondaryVertexV2BJetTags',
+   		#'pfCombinedCvsLJetTags',
+		#'pfCombinedCvsBJetTags',
+		#'pfDeepCSVJetTags:probudsg',
+		#'pfDeepCSVJetTags:probb',
+		#'pfDeepCSVJetTags:probc',
+		#'pfDeepCSVJetTags:probbb',
+      	'pfDeepFlavourJetTags:probb',
+      	'pfDeepFlavourJetTags:probbb',
+      	'pfDeepFlavourJetTags:problepb',
+      	'pfDeepFlavourJetTags:probc',
+      	'pfDeepFlavourJetTags:probuds',
+      	'pfDeepFlavourJetTags:probg'
+      ],
+   postfix='NewDFTraining'
 )
+
+
+#updateJetCollection(
+#    process,
+#    jetSource = cms.InputTag('slimmedJets'),
+#    labelName = 'UpdatedJEC',
+#    jetCorrections = ('AK4PFchs', corList, 'None'),
+#	btagDiscriminators = [
+#   'pfDeepFlavourJetTags:probb',
+#   'pfDeepFlavourJetTags:probbb',
+#   'pfDeepFlavourJetTags:problepb',
+#   'pfDeepFlavourJetTags:probc',
+#   'pfDeepFlavourJetTags:probuds',
+#   'pfDeepFlavourJetTags:probg'
+#  ],
+#)
 
 #updateJetCollection(
 #    process,
@@ -132,10 +155,13 @@ updateJetCollection(
     jetCorrections = ('AK8PFchs', corList, 'None')
 )
 
-process.jecSequence = cms.Sequence(process.patJetCorrFactorsUpdatedJEC * process.updatedPatJetsUpdatedJEC)
+#process.jecSequence = cms.Sequence(process.pfDeepFlavourJetTagsNewDFTraining * process.patJetCorrFactorsNewDFTraining * process.updatedPatJetsNewDFTraining * process.patJetCorrFactorsTransientCorrectedNewDFTraining * process.updatedPatJetsTransientCorrectedNewDFTraining)
+#process.jecSequence = cms.Sequence(process.patJetCorrFactorsUpdatedJEC * process.updatedPatJetsUpdatedJEC)
 
+#jetsNameAK4="updatedPatJetsTransientCorrectedNewDFTraining"
+jetsNameAK4="selectedUpdatedPatJetsNewDFTraining"
 #jetsNameAK4="selectedUpdatedPatJetsUpdatedJEC"
-jetsNameAK4="updatedPatJetsUpdatedJEC"
+#jetsNameAK4="updatedPatJetsUpdatedJEC"
 #jetsNameAK4="slimmedJets"
 jetsNameAK8="selectedUpdatedPatJetsUpdatedJECAK8"
 #jetsNameAK10="patJetsReapplyJECAK10"
@@ -517,6 +543,12 @@ process.runQG = cms.Sequence()
 if options.runQG:
     process.runQG = cms.Sequence(process.QGTagger)
 
+process.tsk = cms.Task()
+for mod in process.producers_().itervalues():
+    process.tsk.add(mod)
+for mod in process.filters_().itervalues():
+	process.tsk.add(mod)
+
 if not options.isData:    
     process.p = cms.Path(
                        #                     process.calibratedPatElectrons+
@@ -527,7 +559,7 @@ if not options.isData:
                        #                     process.regressionApplication+
 					   process.fullPatMetSequenceModifiedMET+
                        process.METSignificance+
-                       process.jecSequence+
+                       #process.jecSequence+
                        process.runQG+
                        #                     process.BadChargedCandidateFilter+
                        #                     process.BadPFMuonFilter+
@@ -536,7 +568,8 @@ if not options.isData:
                        process.genJetFlavourInfos+
                        process.matchGenBHadron+
                        process.matchGenCHadron+ 
-                       process.FlatTree
+                       process.FlatTree,
+					   process.tsk
     )
  
 else:
@@ -549,10 +582,16 @@ else:
                        #                     process.regressionApplication+
 					   process.fullPatMetSequenceModifiedMET+
                        process.METSignificance+
-                       process.jecSequence+
+                       #process.jecSequence+
                        process.runQG+
                        #                     process.BadChargedCandidateFilter+
                        #                     process.BadPFMuonFilter+
                        process.slimmedPatTriggerUnpacked+
-                       process.FlatTree
+                       process.FlatTree,
+					   process.tsk
     )
+
+
+#file_ = open("./fullconfig.py","w")	
+#file_.write(process.dumpPython())
+#file_.close()

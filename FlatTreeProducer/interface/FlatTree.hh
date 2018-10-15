@@ -895,6 +895,12 @@ class FlatTree
    std::vector<float> jet_DeepCSVProbc;
    std::vector<float> jet_DeepCSVProbbb;
    std::vector<float> jet_DeepCSVProbcc;
+   std::vector<float> jet_DeepFlavourProbuds;
+   std::vector<float> jet_DeepFlavourProbg;
+   std::vector<float> jet_DeepFlavourProbb;
+   std::vector<float> jet_DeepFlavourProbbb;
+   std::vector<float> jet_DeepFlavourProblepb;
+   std::vector<float> jet_DeepFlavourProbc;
    std::vector<float> jet_cMVAv2;
    std::vector<float> jet_CharmCvsL;
    std::vector<float> jet_CharmCvsB;

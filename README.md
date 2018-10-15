@@ -31,6 +31,10 @@ cp ${CMSSW_BASE}/external/slc6_amd64_gcc630/data/RecoEgamma/ElectronIdentificati
 # Tools needed for AK10 jet collection
 git clone https://github.com/cms-jet/JetToolbox JMEAnalysis/JetToolbox 
 
+# Rerun DeepFlavour with newest training
+git cms-addpkg RecoBTag/TensorFlow
+git cherry-pick 94ceae257f846998c357fcad408986cc8a039152
+
 # Clone this repo
 git clone https://github.com/TopBrussels/VUBFlatTree.git
 

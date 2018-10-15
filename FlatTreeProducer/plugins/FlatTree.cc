@@ -852,6 +852,12 @@ void FlatTree::Init()
    jet_DeepCSVProbc.clear();
    jet_DeepCSVProbbb.clear();
    jet_DeepCSVProbcc.clear();
+   jet_DeepFlavourProbuds.clear();
+   jet_DeepFlavourProbg.clear();
+   jet_DeepFlavourProbb.clear();
+   jet_DeepFlavourProbbb.clear();
+   jet_DeepFlavourProblepb.clear();
+   jet_DeepFlavourProbc.clear();
    jet_cMVAv2.clear();
    jet_CharmCvsL.clear();
    jet_CharmCvsB.clear();
@@ -2010,6 +2016,12 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("jet_DeepCSVProbc") ) tree->Branch("jet_DeepCSVProbc", "std::vector<float>", &jet_DeepCSVProbc, buffersize);
    if( doWrite("jet_DeepCSVProbbb") ) tree->Branch("jet_DeepCSVProbbb", "std::vector<float>", &jet_DeepCSVProbbb, buffersize);
    if( doWrite("jet_DeepCSVProbcc") ) tree->Branch("jet_DeepCSVProbcc", "std::vector<float>", &jet_DeepCSVProbcc, buffersize);
+   if( doWrite("jet_DeepFlavourProbuds") ) tree->Branch("jet_DeepFlavourProbuds", "std::vector<float>", &jet_DeepFlavourProbuds, buffersize);
+   if( doWrite("jet_DeepFlavourProbg") ) tree->Branch("jet_DeepFlavourProbg", "std::vector<float>", &jet_DeepFlavourProbg, buffersize);
+   if( doWrite("jet_DeepFlavourProbb") ) tree->Branch("jet_DeepFlavourProbb", "std::vector<float>", &jet_DeepFlavourProbb, buffersize);
+   if( doWrite("jet_DeepFlavourProbbb") ) tree->Branch("jet_DeepFlavourProbbb", "std::vector<float>", &jet_DeepFlavourProbbb, buffersize);
+   if( doWrite("jet_DeepFlavourProblepb") ) tree->Branch("jet_DeepFlavourProblepb", "std::vector<float>", &jet_DeepFlavourProblepb, buffersize);
+   if( doWrite("jet_DeepFlavourProbc") ) tree->Branch("jet_DeepFlavourProbc", "std::vector<float>", &jet_DeepFlavourProbc, buffersize);
    if( doWrite("jet_cMVAv2") ) tree->Branch("jet_cMVAv2", "std::vector<float>", &jet_cMVAv2, buffersize);
    if( doWrite("jet_CharmCvsL") ) tree->Branch("jet_CharmCvsL", "std::vector<float>", &jet_CharmCvsL, buffersize);
    if( doWrite("jet_CharmCvsB") ) tree->Branch("jet_CharmCvsB", "std::vector<float>", &jet_CharmCvsB, buffersize);

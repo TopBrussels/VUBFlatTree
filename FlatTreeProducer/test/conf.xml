@@ -742,6 +742,12 @@
     <var name="jet_DeepCSVProbbb" save="1"></var>
     <var name="jet_DeepCSVProbc" save="1"></var>
     <var name="jet_DeepCSVProbcc" save="1"></var>
+	<var name="jet_DeepFlavourProbuds" save="1"></var>
+	<var name="jet_DeepFlavourProbg" save="1"></var>
+    <var name="jet_DeepFlavourProbb" save="1"></var>
+    <var name="jet_DeepFlavourProbbb" save="1"></var>
+    <var name="jet_DeepFlavourProblepb" save="1"></var>
+    <var name="jet_DeepFlavourProbc" save="1"></var>
     <var name="jet_CharmCvsL" save="1"></var>
     <var name="jet_CharmCvsB" save="1"></var>
     <var name="jet_partonFlavour" save="1"></var>
