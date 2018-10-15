@@ -146,6 +146,7 @@ void FlatTree::Init()
    pv_isFake = DEFVAL;
    
    mc_weight = DEFVAL;
+   mc_weight_originalValue = DEFVAL;
    mc_id = DEFVAL;
    mc_f1 = DEFVAL;
    mc_f2 = DEFVAL;
@@ -1303,6 +1304,7 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("pv_isFake") ) tree->Branch("pv_isFake", &pv_isFake, "pv_isFake/I", buffersize);
 
    if( doWrite("mc_weight") ) tree->Branch("mc_weight", &mc_weight, "mc_weight/F", buffersize);
+   if( doWrite("mc_weight_originalValue") ) tree->Branch("mc_weight_originalValue", &mc_weight_originalValue, "mc_weight_originalValue/F", buffersize);
    if( doWrite("mc_id") ) tree->Branch("mc_id", &mc_id, "mc_id/I", buffersize);
    if( doWrite("mc_f1") ) tree->Branch("mc_f1", &mc_f1, "mc_f1/I", buffersize);
    if( doWrite("mc_f2") ) tree->Branch("mc_f2", &mc_f2, "mc_f2/I", buffersize);

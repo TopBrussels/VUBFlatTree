@@ -1242,11 +1242,17 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
    // ##########################################################
    //
    float mc_weight = 1.;
+   float mc_weight_originalValue = 1.;
    
    if( genEventInfo.isValid() )
      {
-        float wGen = genEventInfo->weight();
+        // for some 94x amcatnlo samples, the value of the mc weight is not +-1, but some large (pos/neg) number
+		// so we save both the +-1 label and the original number
+		// the latter is needed for a proper reweighting of the weight_scale_* variables
+		float wGen = genEventInfo->weight();
+		mc_weight_originalValue = wGen;
         mc_weight = (wGen > 0 ) ? 1. : -1.;
+		
 	
         ftree->mc_id = genEventInfo->signalProcessID();
         ftree->mc_f1 = genEventInfo->pdf()->id.first;
@@ -1283,6 +1289,7 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
      }
    
    ftree->mc_weight = mc_weight;
+   ftree->mc_weight_originalValue = mc_weight_originalValue;
    
    hweight->SetBinContent(1,hweight->GetBinContent(1)+ftree->mc_weight);
    

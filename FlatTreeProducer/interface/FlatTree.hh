@@ -174,6 +174,7 @@ class FlatTree
    double met_cov11;
 
    float mc_weight;
+   float mc_weight_originalValue; // in 94X amcatnlo samples, the original weight is not +-1 but some large number which needs to be saved for the correct weight_scale_* branches
    int   mc_id;
    int   mc_f1;
    int   mc_f2;

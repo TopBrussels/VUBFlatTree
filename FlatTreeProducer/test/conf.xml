@@ -117,6 +117,7 @@
     <var name="pv_rho" save="1"></var>
     <var name="pv_isFake" save="1"></var>
     <var name="mc_weight" save="1"></var>
+	<var name="mc_weight_originalValue" save="1"></var>
     <var name="weight_originalXWGTUP" save="1" mc="1"></var>
     <var name="weight_scale_muF0p5" save="1" mc="1"></var>
     <var name="weight_scale_muF2" save="1" mc="1"></var>
