@@ -1,8 +1,8 @@
 #!/bin/env zsh
 
-slist="list.txt"
-pset="crabConfigTemplate.py"
-ver="Test2017Analysis_Data"
+slist="samples_Data2017_31Mar2018.txt"
+pset="crabConfigTemplate_data.py"
+ver="2017Analysis_Data_NewElectronIDv2"
 prodv="/store/user/smoortga/Analysis/FlatTree/${ver}/"
 
 rm -f crabConfig.py*

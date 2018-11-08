@@ -9,15 +9,15 @@ config.JobType.psetName = '../runFlatTreeMINIAOD_cfg.py'
 config.JobType.pluginName = 'Analysis'
 config.JobType.inputFiles = ['../conf.xml','../Fall17_17Nov2017BCDEF_V6_DATA.db','../Fall17_17Nov2017_V6_MC.db']
 #config.JobType.outputFiles = ['output.root']
-config.JobType.pyCfgParams = ['isData=0','runAK10=0']
-#config.JobType.pyCfgParams = ['isData=1','runAK10=0']
+#config.JobType.pyCfgParams = ['isData=0','runAK10=0']
+config.JobType.pyCfgParams = ['isData=1','runAK10=0']
 config.section_('Data')
-#config.Data.splitting='LumiBased'
-config.Data.splitting='FileBased'
+config.Data.splitting='LumiBased'
+#config.Data.splitting='FileBased'
 config.Data.totalUnits = -1 #nof files (or lumisection) to analyze in total
-#config.Data.unitsPerJob = 100 #nof files (or lumisections) in each job
-config.Data.unitsPerJob = 3
-#config.Data.lumiMask = 'GRL/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt'
+config.Data.unitsPerJob = 100 #nof files (or lumisections) in each job
+#config.Data.unitsPerJob = 2
+config.Data.lumiMask = 'GRL/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt'
 
 config.Data.allowNonValidInputDataset = True
 config.Data.publication = False

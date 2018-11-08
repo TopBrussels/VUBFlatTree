@@ -45,7 +45,7 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 if options.isData:
     process.GlobalTag.globaltag = '94X_dataRun2_v6'    
 else:
-    process.GlobalTag.globaltag = '94X_mc2017_realistic_v13'
+    process.GlobalTag.globaltag = '94X_mc2017_realistic_v14'
 
 corName="Fall17_17Nov2017_V6_MC"
 corTag="JetCorrectorParametersCollection_"+corName
@@ -212,7 +212,7 @@ switchOnVIDElectronIdProducer(process,DataFormat.MiniAOD)
 my_id_modules = [
 'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_noIso_V1_cff',
 'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_iso_V1_cff',
-'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Fall17_94X_V1_cff'
+'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Fall17_94X_V2_cff'
 ]
 
 for idmod in my_id_modules:
@@ -261,7 +261,7 @@ runMetCorAndUncFromMiniAOD (
         process,
         isData = options.isData,
         fixEE2017 = True,
-        fixEE2017Params = {'userawPt': True, 'PtThreshold':50.0, 'MinEtaThreshold':2.65, 'MaxEtaThreshold': 3.139} ,
+        fixEE2017Params = {'userawPt': True, 'ptThreshold':50.0, 'minEtaThreshold':2.65, 'maxEtaThreshold': 3.139} ,
         postfix = "ModifiedMET"
 )
 
@@ -362,10 +362,10 @@ process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
                   electronPATInput         = cms.InputTag("slimmedElectrons"),
                   #electronPATInput         = cms.InputTag("calibratedPatElectrons"),
 
-                  eleVetoCBIdMap           = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V1-veto"),
-                  eleLooseCBIdMap          = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V1-loose"),
-                  eleMediumCBIdMap         = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V1-medium"),
-                  eleTightCBIdMap          = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V1-tight"),
+                  eleVetoCBIdMap           = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-veto"),
+                  eleLooseCBIdMap          = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-loose"),
+                  eleMediumCBIdMap         = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-medium"),
+                  eleTightCBIdMap          = cms.InputTag("egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-tight"),
 
                   ele90NoIsoMVAIdMap        = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-noIso-V1-wp90"),
                   ele80NoIsoMVAIdMap         = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-noIso-V1-wp80"),
