@@ -123,8 +123,24 @@
     <var name="weight_scale_muF2" save="1" mc="1"></var>
     <var name="weight_scale_muR0p5" save="1" mc="1"></var>
     <var name="weight_scale_muR2" save="1" mc="1"></var>
+    <var name="weight_scale_isr0p707" save="1" mc="1"></var>
+    <var name="weight_scale_fsr0p707" save="1" mc="1"></var>
+    <var name="weight_scale_isr1p414" save="1" mc="1"></var>
+    <var name="weight_scale_fsr1p414" save="1" mc="1"></var>
+    <var name="weight_scale_isr0p5" save="1" mc="1"></var>
+    <var name="weight_scale_fsr0p5" save="1" mc="1"></var>
+    <var name="weight_scale_isr2" save="1" mc="1"></var>
+    <var name="weight_scale_fsr2" save="1" mc="1"></var>
+    <var name="weight_scale_isr0p25" save="1" mc="1"></var>
+    <var name="weight_scale_fsr0p25" save="1" mc="1"></var>
+    <var name="weight_scale_isr4" save="1" mc="1"></var>
+    <var name="weight_scale_fsr4" save="1" mc="1"></var>
+    <var name="weight_scale_pdfAlphas0p017" save="1" mc="1"></var>
+    <var name="weight_scale_pdfAlphas0p019" save="1" mc="1"></var>
     <var name="mc_pdfweights" save="1" mc="1"></var>
     <var name="mc_pdfweightIds" save="1" mc="1"></var>
+    <var name="mc_smeftweights" save="1" mc="1"></var>
+    <var name="mc_smeftweightIds" save="1" mc="1"></var>
     <var name="mc_id" save="1" mc="1"></var>
     <var name="mc_f1" save="1" mc="1"></var>
     <var name="mc_f2" save="1" mc="1"></var>

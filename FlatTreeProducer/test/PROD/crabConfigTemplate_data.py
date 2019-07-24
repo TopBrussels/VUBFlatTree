@@ -11,11 +11,13 @@ config.JobType.inputFiles = ['../conf.xml','../Fall17_17Nov2017BCDEF_V6_DATA.db'
 #config.JobType.outputFiles = ['output.root']
 #config.JobType.pyCfgParams = ['isData=0','runAK10=0']
 config.JobType.pyCfgParams = ['isData=1','runAK10=0']
+config.JobType.maxMemoryMB = 8000
+config.JobType.maxJobRuntimeMin = 5260
 config.section_('Data')
 config.Data.splitting='LumiBased'
 #config.Data.splitting='FileBased'
 config.Data.totalUnits = -1 #nof files (or lumisection) to analyze in total
-config.Data.unitsPerJob = 100 #nof files (or lumisections) in each job
+config.Data.unitsPerJob = 30 #nof files (or lumisections) in each job
 #config.Data.unitsPerJob = 2
 config.Data.lumiMask = 'GRL/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt'
 

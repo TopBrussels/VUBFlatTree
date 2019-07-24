@@ -20,6 +20,8 @@ options.register('fillPUInfo',True,VarParsing.multiplicity.singleton,VarParsing.
 options.register('nPDF', -1, VarParsing.multiplicity.singleton, VarParsing.varType.int, "nPDF")
 options.register('confFile', 'conf.xml', VarParsing.multiplicity.singleton, VarParsing.varType.string, "Flattree variables configuration")
 options.register('bufferSize', 32000, VarParsing.multiplicity.singleton, VarParsing.varType.int, "Buffer size for branches of the flat tree")
+
+options.register('privateMC',False,VarParsing.multiplicity.singleton,VarParsing.varType.bool,'Processing privately produced MC')
 options.parseArguments()
 
 ##########################
@@ -43,14 +45,14 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condD
 from Configuration.AlCa.GlobalTag import GlobalTag
 
 if options.isData:
-    process.GlobalTag.globaltag = '94X_dataRun2_v6'    
+    process.GlobalTag.globaltag = '94X_dataRun2_v11'    
 else:
-    process.GlobalTag.globaltag = '94X_mc2017_realistic_v14'
+    process.GlobalTag.globaltag = '94X_mc2017_realistic_v17'
 
-corName="Fall17_17Nov2017_V6_MC"
+corName="Fall17_17Nov2017_V32_94X_MC"
 corTag="JetCorrectorParametersCollection_"+corName
 if options.isData:
-    corName="Fall17_17Nov2017BCDEF_V6_DATA"
+    corName="Fall17_17Nov2017_V32_94X_DATA"
     corTag="JetCorrectorParametersCollection_"+corName
 dBFile=corName+".db"
 
@@ -312,15 +314,16 @@ if options.runQG:
 #  Input  #
 ###########
 
+#filename = 'root://cmsxrootd.fnal.gov///store/mc/RunIIFall17MiniAODv2/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU2017_12Apr2018_new_pmx_94X_mc2017_realistic_v14-v1/00000/20354412-9AAC-E811-81CA-0025905B861C.root'
+#filename = 'root://cmsxrootd.fnal.gov///store/mc/RunIIFall17MiniAODv2/TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/MINIAODSIM/PU2017_12Apr2018_new_pmx_94X_mc2017_realistic_v14-v2/110000/00262BF3-E0EA-E811-AC26-24BE05C48801.root'
+filename = 'file:testTTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8_100evts_numEvent100.root'
+if options.privateMC:
+    filename='file:test_MINIAOD_smeft.root'
+
+
 process.source = cms.Source("PoolSource",
     duplicateCheckMode = cms.untracked.string("noDuplicateCheck"), # WARNING / FIXME for test only !
-    fileNames = cms.untracked.vstring(
-         #'/store/data/Run2017D/MuonEG/MINIAOD/17Nov2017-v1/50000/3E5F02AC-33E7-E711-AE42-A0369FC5FBA4.root'
-#         'file:0CF65340-0200-E811-ABB7-0025905C53F0.root'
-#         '/store/mc/RunIIFall17MiniAOD/ttHJetToNonbb_M125_TuneCP5_13TeV_amcatnloFXFX_madspin_pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/20000/0CF65340-0200-E811-ABB7-0025905C53F0.root'
-         #'/store/mc/RunIIFall17MiniAOD/TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/50000/08DE33C0-87EB-E711-819D-0242AC1C0500.root'
-         'root://cmsxrootd.fnal.gov///store/mc/RunIIFall17MiniAODv2/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/MINIAODSIM/PU2017_12Apr2018_new_pmx_94X_mc2017_realistic_v14-v1/00000/20354412-9AAC-E811-81CA-0025905B861C.root'
-		)
+    fileNames = cms.untracked.vstring(filename)
 )
 
 ############
@@ -344,6 +347,10 @@ process.slimmedPatTriggerUnpacked = cms.EDProducer('PATTriggerObjectStandAloneUn
 #  Flat Tree configuration  #
 #############################
 
+LHEEventProductString = "externalLHEProducer"
+if options.privateMC:
+    LHEEventProductString = "source"
+
 process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
 
                   dataFormat        = cms.string("MINIAOD"),
@@ -352,6 +359,7 @@ process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
                   confFile          = cms.string(options.confFile),
 
                   isData            = cms.bool(options.isData),
+                  privateMC         = cms.bool(options.privateMC),
                   applyMETFilters   = cms.bool(options.applyMETFilters),
                   fillMCScaleWeight = cms.bool(options.fillMCScaleWeight),
                   fillPUInfo	    = cms.bool(options.fillPUInfo),
@@ -512,7 +520,8 @@ process.FlatTree = cms.EDAnalyzer('FlatTreeProducer',
                   rhoInput                 = cms.InputTag("fixedGridRhoFastjetAll"),
                   genParticlesInput        = cms.InputTag("prunedGenParticles"),
                   genEventInfoInput        = cms.InputTag("generator"),
-                  LHEEventProductInput     = cms.InputTag("externalLHEProducer"),
+                  LHEEventProductInput     = cms.InputTag(LHEEventProductString),
+				  #LHEEventProductInput     = cms.InputTag("source"),
                   bsInput                  = cms.InputTag("offlineBeamSpot"),
                   pfcandsInput             = cms.InputTag("packedPFCandidates"),
                   hConversionsInput        = cms.InputTag("reducedEgamma","reducedConversions"),

@@ -16,10 +16,13 @@
 #include "CommonTools/UtilAlgos/interface/TFileService.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+//#include "SimDataFormats/GeneratorProducts/interface/LHERunInfoProduct.h"
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 #include "SimDataFormats/GeneratorProducts/interface/LHEEventProduct.h"
 #include "SimDataFormats/GeneratorProducts/interface/HepMCProduct.h"
 #include "SimDataFormats/JetMatching/interface/JetFlavourMatching.h"
+
+
 
 #include "DataFormats/Common/interface/TriggerResults.h"
 #include "DataFormats/PatCandidates/interface/PackedTriggerPrescales.h"
@@ -134,6 +137,7 @@ class FlatTreeProducer : public edm::EDAnalyzer
    
    std::string dataFormat_;
    bool isData_;
+   bool privateMC_;
    bool applyMETFilters_;
    bool fillMCScaleWeight_;
    bool fillPUInfo_;
@@ -876,6 +880,8 @@ hltPrescale_(iConfig,consumesCollector(),*this)
    fillMCScaleWeight_    = iConfig.getParameter<bool>("fillMCScaleWeight");
    fillPUInfo_           = iConfig.getParameter<bool>("fillPUInfo");
    isData_               = iConfig.getParameter<bool>("isData");
+   privateMC_            = iConfig.getParameter<bool>("privateMC");
+   if (isData_){ privateMC_=false; } // Protection against unphysical combinations!
    applyMETFilters_      = iConfig.getParameter<bool>("applyMETFilters");
    triggerBits_          = consumes<edm::TriggerResults>(edm::InputTag(std::string("TriggerResults"),std::string(""),std::string("HLT")));
    triggerBitsPAT_       = consumes<edm::TriggerResults>(edm::InputTag(std::string("TriggerResults"),std::string(""),std::string("PAT")));
@@ -993,6 +999,7 @@ hltPrescale_(iConfig,consumesCollector(),*this)
 FlatTreeProducer::~FlatTreeProducer()
 {
 }
+
 
 void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
@@ -1261,21 +1268,125 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
         ftree->mc_x2 = genEventInfo->pdf()->x.second;
         ftree->mc_scale = genEventInfo->pdf()->scalePDF;
         if( genEventInfo->binningValues().size() > 0 ) ftree->mc_ptHat = genEventInfo->binningValues()[0];
-     }
+     
+     
+        //
+        // PARTON SHOWER WEIGHTS (ISR,FSR)
+        //
+        //https://twiki.cern.ch/twiki/bin/view/CMS/TopModGen#Event_Generation
+        // Parton shower weights are stored in genEventInfo->weights() [which is a std::vector<double>]
+        //       Pythia8 PS weights started to be produced on Fall17 campaign:
+        // 
+        //     3 sets of PS weights implemented:
+        //         sqrt(2) and 1/sqrt(2) (reduced, aka Red),
+        //         2 and 0.5 (default, aka Def) -> this is the variation considered up to now in PS variated explicit samples
+        //         4 and 0.25 (conservative, aka Con) 
+        //     They can be accessed through EDM branch:
+        // 
+        //      GenEventInfoProduct_generator__SIM.obj.weights_ 
+        // 
+        //         First two weights (weightID= 0 and 1) correspond to central ME weight value and replica.
+        //         The remaining 12 values (weightIDs = 2 to 13) correspond to the PS weights in the following order (ISR up, FSR up, ISR down, FSR down) x 3 sets, i.e.:
+        // 
+        //         2 = isrRedHi isr:muRfac=0.707, 3 = fsrRedHi fsr:muRfac=0.707, 4 = isrRedLo isr:muRfac=1.414, 5 = fsrRedLo fsr:muRfac=1.414, 
+        // 
+        //         6 = isrDefHi isr:muRfac=0.5, 7 = fsrDefHi fsr:muRfac=0.5,  8 = isrDefLo isr:muRfac=2.0,   9 = fsrDefLo fsr:muRfac=2.0, 
+        // 
+        //         10 = isrConHi isr:muRfac=0.25, 11 = fsrConHi fsr:muRfac=0.25, 12 = isrConLo isr:muRfac=4.0, 13 = fsrConLo fsr:muRfac=4.0 
+        // 
 
+        
+        
+        ftree->weight_scale_isr0p707 = (genEventInfo->weight())*(genEventInfo->weights()[2])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr0p707 = (genEventInfo->weight())*(genEventInfo->weights()[3])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_isr1p414 = (genEventInfo->weight())*(genEventInfo->weights()[4])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr1p414 = (genEventInfo->weight())*(genEventInfo->weights()[5])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_isr0p5 = (genEventInfo->weight())*(genEventInfo->weights()[6])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr0p5 = (genEventInfo->weight())*(genEventInfo->weights()[7])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_isr2 = (genEventInfo->weight())*(genEventInfo->weights()[8])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr2 = (genEventInfo->weight())*(genEventInfo->weights()[9])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_isr0p25 = (genEventInfo->weight())*(genEventInfo->weights()[10])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr0p25 = (genEventInfo->weight())*(genEventInfo->weights()[11])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_isr4 = (genEventInfo->weight())*(genEventInfo->weights()[12])/(lheEventProduct->originalXWGTUP());
+        ftree->weight_scale_fsr4 = (genEventInfo->weight())*(genEventInfo->weights()[13])/(lheEventProduct->originalXWGTUP());
+     
+     }
+     
+    
+        
+   
+   
+   // https://twiki.cern.ch/twiki/bin/viewauth/CMS/LHEReaderCMSSW#Retrieving_the_weights
+//    <weightgroup combine="envelope" name="scale_variation">
+//    <weight id="1001"> muR=1 muF=1 </weight>
+//    <weight id="1002"> muR=1 muF=2 </weight>
+//    <weight id="1003"> muR=1 muF=0.5 </weight>
+//    <weight id="1004"> muR=2 muF=1 </weight>
+//    <weight id="1005"> muR=2 muF=2 </weight>
+//    <weight id="1006"> muR=2 muF=0.5 </weight>
+//    <weight id="1007"> muR=0.5 muF=1 </weight>
+//    <weight id="1008"> muR=0.5 muF=2 </weight>
+//    <weight id="1009"> muR=0.5 muF=0.5 </weight>
+// 
+   
    if(! lheEventProduct.failedToGet())
      {
         if( !isData_ && fillMCScaleWeight_ )
 	  {
 	     ftree->weight_originalXWGTUP = lheEventProduct->originalXWGTUP();
+	     if( lheEventProduct->weights().size() > 0 ){
+	        // for private MC you need to find the first reweighing weight for normalization purposes
+	        float default_private_weight = 1.;
+	        if (privateMC_){
+	            for (unsigned int ii = 0; ii<lheEventProduct->weights().size(); ii++ ){
+	                if (std::stoi(lheEventProduct->weights()[ii].id) == 9001){ 
+	                    default_private_weight = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP());
+	                    break;
+	                }
+	            }
+	        }
+	        for (unsigned int ii = 0; ii<lheEventProduct->weights().size(); ii++ ){
+	            if (!privateMC_){
+                    if (lheEventProduct->weights()[ii].id == "1003") { ftree->weight_scale_muF0p5 = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// muF = 0.5 | muR = 1
+                    else if (lheEventProduct->weights()[ii].id == "1002") { ftree->weight_scale_muF2   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// muF = 2 | muR = 1
+                    else if (lheEventProduct->weights()[ii].id == "1007") { ftree->weight_scale_muR0p5   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// muF = 1   | muR = 0.5
+                    else if (lheEventProduct->weights()[ii].id == "1004") { ftree->weight_scale_muR2   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// muF = 1 | muR = 2
+                    //else if (lheEventProduct->weights()[ii].id == "2001") { std::cout << "nominalPDF: " << (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()) << std::endl; }// nominal PDF alphas 0.118
+                    else if (lheEventProduct->weights()[ii].id == "2101") { ftree->weight_scale_pdfAlphas0p017 = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// PDF alphas 0.117
+                    else if (lheEventProduct->weights()[ii].id == "2102") { ftree->weight_scale_pdfAlphas0p019 =  (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// PDF alphas 0.119
+                    
+                }
+                // In case of private MC also store possible event weights
+                // The first weight (9001) should correspond to the default setup for generation, for normalization purposes
+                if (privateMC_){
+                    if (lheEventProduct->weights()[ii].id == "1003") { ftree->weight_scale_muF0p5 = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()*default_private_weight); }// muF = 0.5 | muR = 1
+                    else if (lheEventProduct->weights()[ii].id == "1002") { ftree->weight_scale_muF2   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()*default_private_weight); }// muF = 2 | muR = 1
+                    else if (lheEventProduct->weights()[ii].id == "1007") { ftree->weight_scale_muR0p5   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()*default_private_weight); }// muF = 1   | muR = 0.5
+                    else if (lheEventProduct->weights()[ii].id == "1004") { ftree->weight_scale_muR2   = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()*default_private_weight); }// muF = 1 | muR = 2
+	                //else if (lheEventProduct->weights()[ii].id == "2001") { std::cout << "nominalPDF: " << (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()) << std::endl; }// nominal PDF alphas 0.118
+                    else if (lheEventProduct->weights()[ii].id == "2101") { ftree->weight_scale_pdfAlphas0p017 = (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// PDF alphas 0.117
+                    else if (lheEventProduct->weights()[ii].id == "2102") { ftree->weight_scale_pdfAlphas0p019 =  (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()); }// PDF alphas 0.119
+                    
+	                if (std::stoi(lheEventProduct->weights()[ii].id) >= 9000){ 
+	                    std::cout << "found SMEFT weights" << std::endl;
+	                    ftree->mc_smeftweights.push_back( (genEventInfo->weight())*(lheEventProduct->weights()[ii].wgt)/(lheEventProduct->originalXWGTUP()*default_private_weight) ); 
+	                    ftree->mc_smeftweightIds.push_back( lheEventProduct->weights()[ii].id );
+	                    
+	                }
+	                else{
+	                    std::cout << "did not find SMEFT weights!!" << std::endl;
+	                }
+	            }
+            }
+	     }
+        
+        
+         // PDF Uncertainties
+	     /*<weight id="2001"> PDF set = 260001 </weight> #pdfset=260(0,100) NNPDF30_nlo_as_0118 
+	     <weight id="2101"> PDF set = 265000 </weight> #pdfset=265000 NNPDF30_nlo_as_0117
+         <weight id="2102"> PDF set = 266000 </weight> #pdfset=266000 NNPDF30_nlo_as_0119*/
 	     
-	     if( lheEventProduct->weights().size() > 0 )
-	       {
-		  ftree->weight_scale_muF0p5 = (genEventInfo->weight())*(lheEventProduct->weights()[2].wgt)/(lheEventProduct->originalXWGTUP()); // muF = 0.5 | muR = 1
-		  ftree->weight_scale_muF2   = (genEventInfo->weight())*(lheEventProduct->weights()[1].wgt)/(lheEventProduct->originalXWGTUP()); // muF = 2   | muR = 1
-		  ftree->weight_scale_muR0p5 = (genEventInfo->weight())*(lheEventProduct->weights()[6].wgt)/(lheEventProduct->originalXWGTUP()); // muF = 1   | muR = 0.5
-		  ftree->weight_scale_muR2   = (genEventInfo->weight())*(lheEventProduct->weights()[3].wgt)/(lheEventProduct->originalXWGTUP()); // muF = 1   | muR = 2
-	       }
+	    
 	     
 	     int nPdfAll = lheEventProduct->weights().size();
 	     if( nPdf_ < nPdfAll && nPdf_ >= 0 ) nPdfAll = nPdf_;
@@ -3729,6 +3840,8 @@ void FlatTreeProducer::beginRun(const edm::Run& iRun, const edm::EventSetup& iSe
    const char* cmssw_base = std::getenv("CMSSW_BASE");
    std::string JECUncertaintyPath = std::string(cmssw_base)+"/src/VUBFlatTree/FlatTreeProducer/data/jecFiles/Fall17_17Nov2017_V6_MC/Fall17_17Nov2017_V6_MC_Uncertainty_AK4PFchs.txt";
    jecUnc = new JetCorrectionUncertainty(JECUncertaintyPath.c_str());
+
+   
 }
 
 // ------------ method called when ending the processing of a run  ------------

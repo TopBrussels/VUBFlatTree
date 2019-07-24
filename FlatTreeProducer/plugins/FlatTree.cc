@@ -160,8 +160,28 @@ void FlatTree::Init()
    weight_scale_muF2   = DEFVAL;
    weight_scale_muR0p5 = DEFVAL;
    weight_scale_muR2   = DEFVAL;
+   
+   weight_scale_isr0p707 = DEFVAL;
+   weight_scale_fsr0p707 = DEFVAL;
+   weight_scale_isr1p414 = DEFVAL;
+   weight_scale_fsr1p414 = DEFVAL;
+   weight_scale_isr0p5 = DEFVAL;
+   weight_scale_fsr0p5 = DEFVAL;
+   weight_scale_isr2 = DEFVAL;
+   weight_scale_fsr2 = DEFVAL;
+   weight_scale_isr0p25 = DEFVAL;
+   weight_scale_fsr0p25 = DEFVAL;
+   weight_scale_isr4 = DEFVAL;
+   weight_scale_fsr4 = DEFVAL;
+   
+   weight_scale_pdfAlphas0p017 = DEFVAL;
+   weight_scale_pdfAlphas0p019   = DEFVAL;
+   
    mc_pdfweights.clear();
    mc_pdfweightIds.clear();
+   
+   mc_smeftweights.clear();
+   mc_smeftweightIds.clear();
 
    mc_pu_intime_NumInt = DEFVAL;
    mc_pu_trueNumInt = DEFVAL;
@@ -1324,8 +1344,27 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("weight_scale_muF2"  ) ) tree->Branch("weight_scale_muF2",   &weight_scale_muF2,   "weight_scale_muF2/F", buffersize);
    if( doWrite("weight_scale_muR0p5") ) tree->Branch("weight_scale_muR0p5", &weight_scale_muR0p5, "weight_scale_muR0p5/F", buffersize);
    if( doWrite("weight_scale_muR2"  ) ) tree->Branch("weight_scale_muR2",   &weight_scale_muR2,   "weight_scale_muR2/F", buffersize);
+   
+   if( doWrite("weight_scale_isr0p707") ) tree->Branch("weight_scale_isr0p707", &weight_scale_isr0p707, "weight_scale_isr0p707/F", buffersize);
+   if( doWrite("weight_scale_fsr0p707") ) tree->Branch("weight_scale_fsr0p707", &weight_scale_fsr0p707, "weight_scale_fsr0p707/F", buffersize);
+   if( doWrite("weight_scale_isr1p414") ) tree->Branch("weight_scale_isr1p414", &weight_scale_isr1p414, "weight_scale_isr1p414/F", buffersize);
+   if( doWrite("weight_scale_fsr1p414") ) tree->Branch("weight_scale_fsr1p414", &weight_scale_fsr1p414, "weight_scale_fsr1p414/F", buffersize);
+   if( doWrite("weight_scale_isr0p5") ) tree->Branch("weight_scale_isr0p5", &weight_scale_isr0p5, "weight_scale_isr0p5/F", buffersize);
+   if( doWrite("weight_scale_fsr0p5") ) tree->Branch("weight_scale_fsr0p5", &weight_scale_fsr0p5, "weight_scale_fsr0p5/F", buffersize);
+   if( doWrite("weight_scale_isr2") ) tree->Branch("weight_scale_isr2", &weight_scale_isr2, "weight_scale_isr2/F", buffersize);
+   if( doWrite("weight_scale_fsr2") ) tree->Branch("weight_scale_fsr2", &weight_scale_fsr2, "weight_scale_fsr2/F", buffersize);
+   if( doWrite("weight_scale_isr0p25") ) tree->Branch("weight_scale_isr0p25", &weight_scale_isr0p25, "weight_scale_isr0p25/F", buffersize);
+   if( doWrite("weight_scale_fsr0p25") ) tree->Branch("weight_scale_fsr0p25", &weight_scale_fsr0p25, "weight_scale_fsr0p25/F", buffersize);
+   if( doWrite("weight_scale_isr4") ) tree->Branch("weight_scale_isr4", &weight_scale_isr4, "weight_scale_isr4/F", buffersize);
+   if( doWrite("weight_scale_fsr4") ) tree->Branch("weight_scale_fsr4", &weight_scale_fsr4, "weight_scale_fsr4/F", buffersize);
+   
+   if( doWrite("weight_scale_pdfAlphas0p017"  ) ) tree->Branch("weight_scale_pdfAlphas0p017",   &weight_scale_pdfAlphas0p017,   "weight_scale_pdfAlphas0p017/F", buffersize);
+   if( doWrite("weight_scale_pdfAlphas0p019"  ) ) tree->Branch("weight_scale_pdfAlphas0p019",   &weight_scale_pdfAlphas0p019,   "weight_scale_pdfAlphas0p019/F", buffersize);
+   
    if( doWrite("mc_pdfweights") ) tree->Branch("mc_pdfweights", "std::vector<float>", &mc_pdfweights, buffersize);
    if( doWrite("mc_pdfweightIds") ) tree->Branch("mc_pdfweightIds", "std::vector<std::string>", &mc_pdfweightIds, buffersize);
+   if( doWrite("mc_smeftweights") ) tree->Branch("mc_smeftweights", "std::vector<float>", &mc_smeftweights, buffersize);
+   if( doWrite("mc_smeftweightIds") ) tree->Branch("mc_smeftweightIds", "std::vector<std::string>", &mc_smeftweightIds, buffersize);
    
    if( doWrite("mc_pu_intime_NumInt") ) tree->Branch("mc_pu_intime_NumInt", &mc_pu_intime_NumInt, "mc_pu_intime_NumInt/I", buffersize);
    if( doWrite("mc_pu_trueNumInt") ) tree->Branch("mc_pu_trueNumInt", &mc_pu_trueNumInt, "mc_pu_trueNumInt/I", buffersize);

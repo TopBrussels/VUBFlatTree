@@ -3,7 +3,7 @@
 GenTTXCategorizer::GenTTXCategorizer()
 {
    genJetPtMin_ = 20.;
-   genJetAbsEtaMax_ = 666.;
+   genJetAbsEtaMax_ = 2.4;
 }
 
 void GenTTXCategorizer::Init(FlatTree &tree)

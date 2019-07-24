@@ -189,8 +189,26 @@ class FlatTree
    float weight_scale_muR0p5;
    float weight_scale_muR2;
    
+   float weight_scale_isr0p707;
+   float weight_scale_fsr0p707;
+   float weight_scale_isr1p414;
+   float weight_scale_fsr1p414;
+   float weight_scale_isr0p5;
+   float weight_scale_fsr0p5;
+   float weight_scale_isr2;
+   float weight_scale_fsr2;
+   float weight_scale_isr0p25;
+   float weight_scale_fsr0p25;
+   float weight_scale_isr4;
+   float weight_scale_fsr4;
+   
+   float weight_scale_pdfAlphas0p017;
+   float weight_scale_pdfAlphas0p019;
+   
    std::vector<float> mc_pdfweights;
    std::vector<std::string> mc_pdfweightIds;
+   std::vector<float> mc_smeftweights;
+   std::vector<std::string> mc_smeftweightIds;
    
    int mc_pu_intime_NumInt;
    int mc_pu_trueNumInt;
