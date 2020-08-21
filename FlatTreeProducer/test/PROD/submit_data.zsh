@@ -3,7 +3,7 @@
 slist="list.txt"
 #"samples_Data2017_31Mar2018.txt"
 pset="crabConfigTemplate_data.py"
-ver="2017Analysis_DataSingleLepton_NewElectronIDv2_trial4"
+ver="2017Analysis_DataDileptonAndSinglelepton_NewJEC"
 prodv="/store/user/smoortga/Analysis/FlatTree/${ver}/"
 
 rm -f crabConfig.py*
@@ -22,7 +22,7 @@ do
   pubdn=$(echo "${spl[2]}_${spl[3]}" | sed 's%-%_%g')
   nam=$(echo "${spl[1]}" | sed 's%-%_%g')
   reqn=$(echo "${nam}_${pubdn}" | sed 's%_RunIIFall17MiniAODv2.*%%g')
-  reqn=$(echo "${reqn}_trial4")
+  #reqn=$(echo "${reqn}_trial4")
   cat ${pset} | sed "s%INPUTDATASET%${i}%g" \
   | sed "s%OUTLFN%${prodv}%g" \
   | sed "s%REQUESTNAME%${reqn}%g" \

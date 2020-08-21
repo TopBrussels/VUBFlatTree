@@ -174,6 +174,14 @@ class FlatTreeProducer : public edm::EDAnalyzer
    edm::EDGetTokenT<reco::BeamSpot> bsToken_;
    edm::EDGetTokenT<pat::PackedCandidateCollection> pfcandsToken_;
    edm::EDGetTokenT<reco::ConversionCollection> hConversionsToken_;
+   
+   edm::EDGetTokenT<std::vector<reco::GenJet>  > genJetBFragToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > petersonFragToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > upFragToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > downFragToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > centralFragToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > semilepbrUpToken_;
+   edm::EDGetTokenT<edm::ValueMap<float> > semilepbrDownToken_;
 
    //        edm::EDGetTokenT<bool> badMuonFilterToken_;
    //        edm::EDGetTokenT<bool> badChargedCandidateFilterToken_;
@@ -898,6 +906,7 @@ hltPrescale_(iConfig,consumesCollector(),*this)
    ak10jetToken_         = consumes<pat::JetCollection>(iConfig.getParameter<edm::InputTag>("ak10jetInput"));
    jetPuppiToken_        = consumes<pat::JetCollection>(iConfig.getParameter<edm::InputTag>("jetPuppiInput"));
    genJetToken_          = consumes<reco::GenJetCollection>(iConfig.getParameter<edm::InputTag>("genJetInput"));
+   genJetBFragToken_     = consumes<std::vector<reco::GenJet> >(edm::InputTag("particleLevel:jets"));
    metTokenAOD_          = consumes<std::vector<pat::MET> >(iConfig.getParameter<edm::InputTag>("metInput"));
    metTokenMINIAOD_      = consumes<pat::METCollection>(iConfig.getParameter<edm::InputTag>("metInput"));
    metTokenNoHF_         = consumes<pat::METCollection>(iConfig.getParameter<edm::InputTag>("metNoHFInput"));
@@ -910,6 +919,13 @@ hltPrescale_(iConfig,consumesCollector(),*this)
    bsToken_              = consumes<reco::BeamSpot>(iConfig.getParameter<edm::InputTag>("bsInput"));
    pfcandsToken_         = consumes<pat::PackedCandidateCollection>(iConfig.getParameter<edm::InputTag>("pfcandsInput"));
    hConversionsToken_    = consumes<reco::ConversionCollection>(iConfig.getParameter<edm::InputTag>("hConversionsInput"));
+   
+   petersonFragToken_ 	 = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:PetersonFrag"));
+   upFragToken_ 	     = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:upFrag"));
+   centralFragToken_ 	 = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:centralFrag"));
+   downFragToken_ 	     = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:downFrag"));
+   semilepbrUpToken_ 	 = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:semilepbrUp"));
+   semilepbrDownToken_ 	 = consumes<edm::ValueMap<float> >(edm::InputTag("bfragWgtProducer:semilepbrDown"));
    
    //    badMuonFilterToken_   = consumes<bool>(iConfig.getParameter<edm::InputTag>("BadMuonFilter"));
    //    badChargedCandidateFilterToken_ = consumes<bool>(iConfig.getParameter<edm::InputTag>("BadChargedCandidateFilter"));
@@ -1123,6 +1139,32 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
      {
         //	iEvent.getByLabel("genJetFlavour",genJetFlavourMatching);
      }
+   
+   // bFragmentation 
+   // special genJets with https://github.com/cms-sw/cmssw/blob/master/GeneratorInterface/RivetInterface/python/particleLevel_cfi.py
+   edm::Handle<std::vector<reco::GenJet> > genJets_BFrag;
+   iEvent.getByToken(genJetBFragToken_,genJets_BFrag);
+
+   edm::Handle<edm::ValueMap<float> > petersonFrag;
+   iEvent.getByToken(petersonFragToken_,petersonFrag);
+   
+   edm::Handle<edm::ValueMap<float> > centralFrag;
+   iEvent.getByToken(centralFragToken_,centralFrag);
+   
+   edm::Handle<edm::ValueMap<float> > upFrag;
+   iEvent.getByToken(upFragToken_,upFrag);
+   
+   edm::Handle<edm::ValueMap<float> > downFrag;
+   iEvent.getByToken(downFragToken_,downFrag);
+   
+   edm::Handle<edm::ValueMap<float> > semilepbrUp;
+   iEvent.getByToken(semilepbrUpToken_,semilepbrUp);
+   
+   edm::Handle<edm::ValueMap<float> > semilepbrDown;
+   iEvent.getByToken(semilepbrDownToken_,semilepbrDown);
+   
+
+
    
    // Muons
    edm::Handle<pat::MuonCollection> muons;
@@ -3154,6 +3196,7 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
 	  ftree->jet_qgtag.push_back(-666.);
 	
         const reco::GenJet* genJet = jet.genJet();
+        
         bool hasGenInfo = (genJet);
         ftree->jet_hasGenJet.push_back(hasGenInfo);
 	
@@ -3164,6 +3207,7 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
         float gen_jet_E = -666;
         int gen_jet_status = -666;
         int gen_jet_id = -666;
+        
 	
         if( hasGenInfo )
 	  {
@@ -3174,6 +3218,7 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
 	     gen_jet_E = genJet->energy();
 	     gen_jet_status = genJet->status();
 	     gen_jet_id = genJet->pdgId();
+	     
 	  }
 	
         ftree->jet_genJet_pt.push_back(gen_jet_pt);
@@ -3183,6 +3228,8 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
         ftree->jet_genJet_E.push_back(gen_jet_E);
 	
         ftree->jet_genJet_status.push_back(gen_jet_status);
+        
+        
         ftree->jet_genJet_id.push_back(gen_jet_id);
 	
         const reco::GenParticle* genParton = (!isData_) ? jet.genParton() : 0;
@@ -3685,8 +3732,10 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
         int nGenJet = genJets->size();
         ftree->genJet_n = nGenJet;
         for(int ij=0;ij<nGenJet;ij++)
+        for(auto genJet_=genJets->begin(); genJet_!=genJets->end(); ++genJet_)
 	  {
-	     const reco::GenJet& genJet = genJets->at(ij);
+	     //const reco::GenJet& genJet = genJets->at(ij);	     
+	     const reco::GenJet& genJet = *genJet_;
 	     
 	     ftree->genJet_pt.push_back(genJet.pt());
 	     ftree->genJet_eta.push_back(genJet.eta());
@@ -3703,7 +3752,41 @@ void FlatTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& 
 	     //	     int genJet_flavour = (*genJetFlavourMatching)[jetRef].getFlavour();
 	     //	     ftree->genJet_flavour.push_back(genJet_flavour);
 	     ftree->genJet_flavour.push_back(-666); // FIXME
+	     
+	     
+	   
+	     
 	  }
+	  
+	  // BFrag weights
+	  float weight_petersonFrag=1.;
+	  float weight_centralFrag=1.;
+	  float weight_upFrag=1.;
+	  float weight_downFrag=1.;
+	  float weight_semilepbrUp=1.;
+	  float weight_semilepbrDown=1.;
+	  
+	  for(auto genJetBFrag_=genJets_BFrag->begin(); genJetBFrag_!=genJets_BFrag->end(); ++genJetBFrag_)
+	  {
+	  	edm::Ref<std::vector<reco::GenJet> > genJetRefBFrag(genJets_BFrag,genJetBFrag_-genJets_BFrag->begin());
+	  	
+	    weight_petersonFrag*=(*petersonFrag)[genJetRefBFrag];
+	    weight_centralFrag*=(*centralFrag)[genJetRefBFrag];
+	    weight_upFrag*=(*upFrag)[genJetRefBFrag];
+	    weight_downFrag*=(*downFrag)[genJetRefBFrag];
+	    weight_semilepbrUp*=(*semilepbrUp)[genJetRefBFrag];
+	    weight_semilepbrDown*=(*semilepbrDown)[genJetRefBFrag];
+
+		//std::cout << "pt=" << genJetBFrag_->pt() << " id=" << genJetBFrag_->pdgId() << " petersonFragWeight=" << petersonFragWeight << std::endl;
+	  }
+	  
+	  ftree->weight_petersonFrag = weight_petersonFrag;
+	  ftree->weight_centralFrag = weight_centralFrag;
+	  ftree->weight_upFrag = weight_upFrag;
+	  ftree->weight_downFrag = weight_downFrag;
+	  ftree->weight_semilepbrUp = weight_semilepbrUp;
+	  ftree->weight_semilepbrDown = weight_semilepbrDown;
+	  
      }
    
    // ##########################

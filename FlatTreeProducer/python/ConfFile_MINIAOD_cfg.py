@@ -28,7 +28,9 @@ options.parseArguments()
 #  Global configuration  #
 ##########################
 
-process = cms.Process("FlatTree")
+from Configuration.StandardSequences.Eras import eras
+
+process = cms.Process("FlatTree",eras.Run2_2017)
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
@@ -168,6 +170,23 @@ jetsNameAK4="selectedUpdatedPatJetsNewDFTraining"
 jetsNameAK8="selectedUpdatedPatJetsUpdatedJECAK8"
 #jetsNameAK10="patJetsReapplyJECAK10"
 jetsNameAK10="selectedPatJetsAK10PFCHS"
+
+########################
+#  BFragWeightProducer  #
+########################
+
+process.load('SimGeneral.HepPDTESSource.pythiapdt_cfi')
+process.mergedGenParticles = cms.EDProducer("MergedGenParticleProducer",
+					inputPruned = cms.InputTag("prunedGenParticles"),
+						inputPacked = cms.InputTag("packedGenParticles"),
+)
+from GeneratorInterface.RivetInterface.genParticles2HepMC_cfi import genParticles2HepMC
+process.genParticles2HepMC = genParticles2HepMC.clone( genParticles = cms.InputTag("mergedGenParticles") )
+process.load("GeneratorInterface.RivetInterface.particleLevel_cfi")
+process.particleLevel.excludeNeutrinosFromJetClustering = False
+process.load('TopQuarkAnalysis.BFragmentationAnalyzer.bfragWgtProducer_cfi')
+
+
 
 ########################
 #  Additional modules  #
@@ -596,9 +615,14 @@ else:
                        #                     process.BadChargedCandidateFilter+
                        #                     process.BadPFMuonFilter+
                        process.slimmedPatTriggerUnpacked+
+                       process.mergedGenParticles+
+                       process.genParticles2HepMC+
+                       process.particleLevel+
+                       process.bfragWgtProducer+
                        process.FlatTree,
 					   process.tsk
     )
+
 
 
 #file_ = open("./fullconfig.py","w")	

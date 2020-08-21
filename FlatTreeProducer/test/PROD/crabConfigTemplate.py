@@ -7,10 +7,10 @@ config.General.requestName = 'REQUESTNAME'
 config.section_('JobType')
 config.JobType.psetName = '../runFlatTreeMINIAOD_cfg.py'
 config.JobType.pluginName = 'Analysis'
-config.JobType.inputFiles = ['../conf.xml','../Fall17_17Nov2017BCDEF_V6_DATA.db','../Fall17_17Nov2017_V6_MC.db']
+config.JobType.inputFiles = ['../conf.xml','../Fall17_17Nov2017_V32_94X_DATA.db','../Fall17_17Nov2017_V32_94X_MC.db']
 #config.JobType.outputFiles = ['output.root']
 config.JobType.pyCfgParams = ['isData=0','runAK10=0']
-config.JobType.maxMemoryMB = 4000
+#config.JobType.maxMemoryMB = 4000
 config.JobType.maxJobRuntimeMin = 2630
 #config.JobType.pyCfgParams = ['isData=1','runAK10=0']
 config.section_('Data')

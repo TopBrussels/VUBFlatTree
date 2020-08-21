@@ -205,6 +205,13 @@ class FlatTree
    float weight_scale_pdfAlphas0p017;
    float weight_scale_pdfAlphas0p019;
    
+   float weight_petersonFrag;
+   float weight_centralFrag;
+   float weight_upFrag;
+   float weight_downFrag;
+   float weight_semilepbrUp;
+   float weight_semilepbrDown;
+   
    std::vector<float> mc_pdfweights;
    std::vector<std::string> mc_pdfweightIds;
    std::vector<float> mc_smeftweights;
@@ -967,6 +974,7 @@ class FlatTree
    std::vector<float> jet_genJet_E;
    std::vector<int> jet_genJet_status;
    std::vector<int> jet_genJet_id;
+   
 
    std::vector<bool> jet_hasGenParton;
    std::vector<float> jet_genParton_pt;

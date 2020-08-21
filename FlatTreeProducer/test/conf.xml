@@ -137,6 +137,12 @@
     <var name="weight_scale_fsr4" save="1" mc="1"></var>
     <var name="weight_scale_pdfAlphas0p017" save="1" mc="1"></var>
     <var name="weight_scale_pdfAlphas0p019" save="1" mc="1"></var>
+    <var name="weight_petersonFrag" save="1" mc="1"></var>
+    <var name="weight_centralFrag" save="1" mc="1"></var>
+    <var name="weight_upFrag" save="1" mc="1"></var>
+    <var name="weight_downFrag" save="1" mc="1"></var>
+    <var name="weight_semilepbrUp" save="1" mc="1"></var>
+    <var name="weight_semilepbrDown" save="1" mc="1"></var>
     <var name="mc_pdfweights" save="1" mc="1"></var>
     <var name="mc_pdfweightIds" save="1" mc="1"></var>
     <var name="mc_smeftweights" save="1" mc="1"></var>

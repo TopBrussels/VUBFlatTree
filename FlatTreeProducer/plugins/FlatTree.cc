@@ -177,6 +177,13 @@ void FlatTree::Init()
    weight_scale_pdfAlphas0p017 = DEFVAL;
    weight_scale_pdfAlphas0p019   = DEFVAL;
    
+   weight_petersonFrag   = DEFVAL;
+   weight_centralFrag   = DEFVAL;
+   weight_upFrag   = DEFVAL;
+   weight_downFrag   = DEFVAL;
+   weight_semilepbrUp   = DEFVAL;
+   weight_semilepbrDown   = DEFVAL;
+   
    mc_pdfweights.clear();
    mc_pdfweightIds.clear();
    
@@ -1361,6 +1368,14 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("weight_scale_pdfAlphas0p017"  ) ) tree->Branch("weight_scale_pdfAlphas0p017",   &weight_scale_pdfAlphas0p017,   "weight_scale_pdfAlphas0p017/F", buffersize);
    if( doWrite("weight_scale_pdfAlphas0p019"  ) ) tree->Branch("weight_scale_pdfAlphas0p019",   &weight_scale_pdfAlphas0p019,   "weight_scale_pdfAlphas0p019/F", buffersize);
    
+   if( doWrite("weight_petersonFrag"  ) ) tree->Branch("weight_petersonFrag",   &weight_petersonFrag,   "weight_petersonFrag/F", buffersize);
+   if( doWrite("weight_upFrag"  ) ) tree->Branch("weight_upFrag",   &weight_upFrag,   "weight_upFrag/F", buffersize);
+   if( doWrite("weight_downFrag"  ) ) tree->Branch("weight_downFrag",   &weight_downFrag,   "weight_downFrag/F", buffersize);
+   if( doWrite("weight_centralFrag"  ) ) tree->Branch("weight_centralFrag",   &weight_centralFrag,   "weight_centralFrag/F", buffersize);
+   if( doWrite("weight_semilepbrUp"  ) ) tree->Branch("weight_semilepbrUp",   &weight_semilepbrUp,   "weight_semilepbrUp/F", buffersize);
+   if( doWrite("weight_semilepbrDown"  ) ) tree->Branch("weight_semilepbrDown",   &weight_semilepbrDown,   "weight_semilepbrDown/F", buffersize);
+   
+   
    if( doWrite("mc_pdfweights") ) tree->Branch("mc_pdfweights", "std::vector<float>", &mc_pdfweights, buffersize);
    if( doWrite("mc_pdfweightIds") ) tree->Branch("mc_pdfweightIds", "std::vector<std::string>", &mc_pdfweightIds, buffersize);
    if( doWrite("mc_smeftweights") ) tree->Branch("mc_smeftweights", "std::vector<float>", &mc_smeftweights, buffersize);
@@ -2109,6 +2124,7 @@ void FlatTree::CreateBranches(int buffersize = 32000)
    if( doWrite("jet_genJet_E") ) tree->Branch("jet_genJet_E", "std::vector<float>", &jet_genJet_E, buffersize);
    if( doWrite("jet_genJet_status") ) tree->Branch("jet_genJet_status", "std::vector<int>", &jet_genJet_status, buffersize);
    if( doWrite("jet_genJet_id") ) tree->Branch("jet_genJet_id", "std::vector<int>", &jet_genJet_id, buffersize);
+
 
    if( doWrite("jet_hasGenParton") ) tree->Branch("jet_hasGenParton", "std::vector<bool>", &jet_hasGenParton, buffersize);   
    if( doWrite("jet_genParton_pt") ) tree->Branch("jet_genParton_pt", "std::vector<float>", &jet_genParton_pt, buffersize);
